@@ -7,10 +7,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
+	'hostname' => 'localhost',//localhost
 	'username' => 'root',
 	'password' => '',
-	'database' => 'hall_management',
+	'database' => 'iarifbdi_ruet',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
