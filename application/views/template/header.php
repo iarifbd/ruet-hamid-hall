@@ -4,7 +4,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Inventory Management System - www.asd.iarifbd.com</title>
+        <title>Hostel Management System - www.asd.iarifbd.com</title>
         <link rel="icon" href="https://asd.iarifbd.com/images/asd.ico" type="image/x-icon">
 
         <!-- ************Bootstrap Select**************** -->
