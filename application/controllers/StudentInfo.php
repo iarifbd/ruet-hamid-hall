@@ -21,11 +21,12 @@ class StudentInfo extends CI_Controller {
 
     public function Studentform($id = null) {
         if ($id) {
-            $data['student'] = $this->Student_model->getStudent($id); // Get data for editing
+            $data['student'] = $this->Student_model->stuinfo($id); // Get data for editing
         } else {
             $data['student'] = null; // No data for new entry
         }
         
+
         $this->load->view('studentsinfo/student_form', $data); // Load the form view
     }
 

@@ -69,11 +69,8 @@
                                                                 <a href="<?php echo site_url('StudentInfo/getstudent/' . $value['S_Id']); ?>" class="btn btn-primary btn-sm">
                                                                     <i class="fa fa-print" aria-hidden="true"></i></i> Print
                                                                 </a>
-                                                                <a href="<?php echo site_url('StudentInfo/#/' . $value['id']); ?>" class="btn btn-warning btn-sm">
+                                                                <a href="<?php echo site_url('StudentInfo/Studentform/' . $value['S_Id']); ?>" class="btn btn-warning btn-sm">
                                                                     <i class="fas fa-edit"></i> Edit
-                                                                </a>
-                                                                <a href="<?php echo site_url('StudentInfo/#/' . $value['id']); ?>" onclick="return confirm('Are you sure you want to delete this Quotetion?');" class="btn btn-danger btn-sm">
-                                                                    <i class="fas fa-trash-alt"></i> Delete
                                                                 </a>
                                                             </div>                                                            
                                                         </td>

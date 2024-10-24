@@ -26,7 +26,7 @@ class Student_model extends CI_Model {
     }
 
     public function updateStudent($id, $data) {
-        $this->db->where('id', $id);
+        $this->db->where('S_Id', $id);
         return $this->db->update('studentinformation', $data); // Update the student
     }
 
