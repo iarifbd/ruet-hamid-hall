@@ -1,0 +1,46 @@
+If you want to see the full code step by step or line by line, you can simply ask for a detailed explanation along with the code. Here's how you might phrase it:
+
+1. **For Full Code with Detailed Explanation:**
+   - "Can you provide the full code with a detailed explanation for each step?"
+   - "Please explain the code line by line and provide the complete code."
+
+2. **For Step-by-Step Code Generation:**
+   - "Can you generate the code step by step, explaining each part as you go?"
+   - "I want to understand each part of the code. Can you guide me through the process step by step?"
+
+3. **For Highlighting Specific Sections:**
+   - "Can you highlight the important parts of the code and explain why they are necessary?"
+   - "Please explain the purpose of each line in the code."
+
+This way, I can provide you with a more thorough breakdown of the code, ensuring that each part is clear and correct.
+
+If you notice that an answer is incomplete due to a server issue or any other reason, you can ask for the completion in the following ways:
+
+1. **Direct Request for Completion:**
+   - "It looks like the answer was cut off. Can you please complete it?"
+   - "The response seems incomplete. Could you finish explaining the rest of the code?"
+
+2. **Ask for the Missing Parts:**
+   - "Can you provide the missing parts of the explanation or code that wasn't included?"
+   - "Could you continue from where the previous response left off?"
+
+3. **Request for a Full Summary:**
+   - "Can you provide a complete summary or full response based on what was discussed earlier?"
+   - "Please give a comprehensive version of the answer, including any missing details."
+
+This will help ensure that you get the complete and detailed information you need.
+
+
+
+Whenever you want to refer to this template, you can simply mention that you'd like to use the "specific template for forms in CodeIgniter 3," and I'll recall the structure and design you've been using. You can also describe any variations or additional features you need, and I'll incorporate them accordingly.
+
+
+You can simply mention that you're using the "quotation template" or describe the template when you need to refer to it. I'll remember the details associated with it, so you won't need to provide the entire template again.
+
+
+I've saved the "quotation printable page" template in memory. You can refer to it as needed for future tasks or modifications. Let me know if there's anything else you'd like to do!
+
+
+I've saved the "My Custom Page Template" for future reference. You can now easily integrate this template into your projects whenever needed. If you need any modifications or further assistance, feel free to ask!
+
+
