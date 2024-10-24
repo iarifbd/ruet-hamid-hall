@@ -14,7 +14,7 @@
                     <div class="container-fluid px-4">
                         <div class="row mt-5">
                             <div class="col-12 text-end">
-                                <a href="<?php echo site_url('StudentInfo'); ?>" class="btn btn-primary mb-3">
+                                <a href="<?php echo site_url('StudentInfo/Studentform'); ?>" class="btn btn-primary mb-3">
                                     <i class="fa fa-plus" aria-hidden="true"></i> Add New Student
                                 </a>
                             </div> <!-- <?php echo "<pre>";print_r($stuinfo); ?> -->

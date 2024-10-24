@@ -21,6 +21,13 @@ class Student_model extends CI_Model {
         return $query->result_array();
     }
 
-  
+    public function insertStudent($data) {
+        return $this->db->insert('studentinformation', $data); // Insert the student
+    }
+
+    public function updateStudent($id, $data) {
+        $this->db->where('id', $id);
+        return $this->db->update('studentinformation', $data); // Update the student
+    }
 
 }
