@@ -11,3 +11,4 @@ $route['editor/save_content'] = 'editor/save_content';
 $route['editor/view_all'] = 'editor/view_all';
 $route['editor/view/(:num)'] = 'editor/view/$1';
 
+$route['StudentInfo/StuAcc/(:num)'] = 'StudentInfo/StuAcc/$1';

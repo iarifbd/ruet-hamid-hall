@@ -59,6 +59,9 @@ class StudentInfo extends CI_Controller {
             redirect('Student_model'); // Redirect after save
     }  
 
-
+    public function StuAcc($id=null){
+        $data['stuacc'] = $this->Student_model->StuLedg($id);
+        $this->load->view('studentsinfo/AccInfo', $data);
+    }
 
 }

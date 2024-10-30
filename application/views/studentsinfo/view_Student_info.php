@@ -13,9 +13,6 @@
             .no-print {
                 display: none;
             }
-            table {
-                width: 100%;
-            }
             header, footer {
                 display: none;
             }
@@ -35,8 +32,11 @@
             font-size: 2.5rem;
             margin-bottom: 20px;
         }
-        th {
-            text-align: center;
+        .student-info {
+            margin-bottom: 20px;
+            border: 1px solid #dee2e6;
+            padding: 15px;
+            border-radius: 5px;
         }
     </style>
 </head>
@@ -47,56 +47,37 @@
     </header>
 
     <div class="container mt-4">
-        <table class="table table-bordered table-striped">
-            <thead class="table-dark">
-                <tr>
-                    <th>SL #</th>
-                    <th>Student Id #</th>
-                    <th>Reg_No</th>
-                    <th>Name</th>
-                    <th>Room</th>
-                    <th>Dept</th>
-                    <th>Batch</th>
-                    <th>F_Name</th>
-                    <th>M_Name</th>
-                    <th>Address</th>
-                    <th>Mobile</th>
-                    <th>Gur_Mobile</th>
-                    <th>Blood</th>
-                    <th>Religion</th>
-                    <th>Hall_Name</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($stuinfo as $key => $value): ?>
-                <tr>
-                    <td><?php echo ($key + 1); ?></td>
-                    <td><?php echo $value['S_Id']; ?></td>
-                    <td><?php echo $value['Reg_No']; ?></td>
-                    <td><?php echo $value['Name']; ?></td>
-                    <td><?php echo $value['Room']; ?></td>
-                    <td><?php echo $value['Dept']; ?></td>
-                    <td><?php echo $value['Batch']; ?></td>
-                    <td><?php echo $value['F_Name']; ?></td>
-                    <td><?php echo $value['M_Name']; ?></td>
-                    <td><?php echo $value['Address']; ?></td>
-                    <td><?php echo $value['Mobile']; ?></td>
-                    <td><?php echo $value['Gur_Mobile']; ?></td>
-                    <td><?php echo $value['Blood']; ?></td>
-                    <td><?php echo $value['Religion']; ?></td>
-                    <td><?php echo $value['Hall_Name']; ?></td> 
-                </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
+        <div class="row">
+            <?php foreach ($stuinfo as $value): ?>
+            <div class="col-md-6">
+                <div class="student-info">
+                    <p><strong>Student Id:</strong> <?php echo $value['S_Id']; ?></p>
+                    <p><strong>Name:</strong> <?php echo $value['Name']; ?></p>
+                    <p><strong>Reg No:</strong> <?php echo $value['Reg_No']; ?></p>
+                    <p><strong>Room:</strong> <?php echo $value['Room']; ?></p>
+                    <p><strong>Dept:</strong> <?php echo $value['Dept']; ?></p>
+                    <p><strong>Batch:</strong> <?php echo $value['Batch']; ?></p>
+                    <p><strong>Father's Name:</strong> <?php echo $value['F_Name']; ?></p>
+                    <p><strong>Mother's Name:</strong> <?php echo $value['M_Name']; ?></p>
+                    <p><strong>Address:</strong> <?php echo $value['Address']; ?></p>
+                    <p><strong>Mobile:</strong> <?php echo $value['Mobile']; ?></p>
+                    <p><strong>Guardian Mobile:</strong> <?php echo $value['Gur_Mobile']; ?></p>
+                    <p><strong>Blood Group:</strong> <?php echo $value['Blood']; ?></p>
+                    <p><strong>Religion:</strong> <?php echo $value['Religion']; ?></p>
+                    <p><strong>Hall Name:</strong> <?php echo $value['Hall_Name']; ?></p>
+                </div>
+            </div>
+            <?php endforeach; ?>
+        </div>
 
         <div class="text-center mt-4 no-print">
             <button class="btn btn-primary" onclick="window.print()">Print Report</button>
+            <a href="<?php echo base_url(); ?>"><button class="btn btn-primary">Back to Home</button></a>
         </div>
     </div>
 
     <footer>
-        <p>&copy; <?php echo date("Y"); ?> Your Institution Name. All rights reserved.</p>
+        <p>&copy; <?php echo date("Y"); ?> www.iarifbd.com</p>
     </footer>
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
