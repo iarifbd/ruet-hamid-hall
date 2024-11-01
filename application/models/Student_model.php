@@ -30,21 +30,31 @@ class Student_model extends CI_Model {
         return $this->db->update('studentinformation', $data); // Update the student
     }
 
-    // Fetch all Account information or specific student information based on ID
-    public function StuLedg($id = null) {
+    public function StuLedg() {
+
+        $this->db->select('S_Id, SUM(dr) AS Dr, SUM(cr) AS Cr, SUM(dr) - SUM(cr) AS Balance, MAX(status) AS Status');
+        $this->db->from('studentledger');
+        $this->db->group_by('S_Id');
+        $this->db->order_by('S_Id', 'ASC');
+        $query = $this->db->get();
+
+        // Return the result as an array
+        return $query->result_array();
+    }
+
+    public function StuLedgDetails($id = null) {
         // If an ID is provided, filter by that ID
         if ($id !== null) {
             $this->db->where('S_Id', $id);
         }
 
         // Order the results by 'id'
-        $this->db->order_by('id', 'ASC');
+        $this->db->order_by('tdate', 'ASC');
 
-        // Execute the query on the 'studentinformation' table
+        // Execute the query on the 'studentledger' table
         $query = $this->db->get('studentledger');
 
         // Return the result as an array
         return $query->result_array();
     }
-
 }

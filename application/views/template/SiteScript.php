@@ -30,6 +30,13 @@
         <script>
             $(document).ready(function() {
                 var table=$('.mydatatable').DataTable({
+                    pageLength: 100,
+                    
+                    lengthMenu: [
+                        [10, 100, 500, -1], // The values to be used (10, 100, All)
+                        [10, 100, 500, "All"] // Displayed text for the options
+                    ],
+                    
                     buttons:['copy', 'csv', 'excel', 'pdf', 'print'] 
                 })
 

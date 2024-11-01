@@ -12,3 +12,4 @@ $route['editor/view_all'] = 'editor/view_all';
 $route['editor/view/(:num)'] = 'editor/view/$1';
 
 $route['StudentInfo/StuAcc/(:num)'] = 'StudentInfo/StuAcc/$1';
+$route['StudentInfo/StuLedDetail/(:num)'] = 'StudentInfo/StuLedDetail/$1';

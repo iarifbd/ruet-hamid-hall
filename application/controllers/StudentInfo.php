@@ -64,4 +64,9 @@ class StudentInfo extends CI_Controller {
         $this->load->view('studentsinfo/AccInfo', $data);
     }
 
+    public function StuLedDetail($id=null){
+        $data['stuacc'] = $this->Student_model->StuLedgDetails($id);
+        $this->load->view('studentsinfo/AccInfoDetail', $data);
+    }
+
 }
