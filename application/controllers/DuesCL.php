@@ -10,7 +10,7 @@ class DuesCL extends CI_Controller {
 
     public function index() {
         // Define your parameters
-        $date = '2024-02-01';
+        $date = '2025-02-01';
         $rate = 5;
 
         // Call the library method
