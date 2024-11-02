@@ -8,7 +8,7 @@ class DuesCL extends CI_Controller {
         $this->load->library('dues_model');
     }
 
-    public function create_dues() {
+    public function index() {
         // Define your parameters
         $date = '2024-02-01';
         $rate = 5;
