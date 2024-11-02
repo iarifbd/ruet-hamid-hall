@@ -49,7 +49,7 @@ class Student_model extends CI_Model {
         }
 
         // Order the results by 'id'
-        $this->db->order_by('tdate', 'ASC');
+        $this->db->order_by('gdate', 'ASC');
 
         // Execute the query on the 'studentledger' table
         $query = $this->db->get('studentledger');
