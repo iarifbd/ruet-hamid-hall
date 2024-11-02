@@ -16,5 +16,9 @@ class FeeController extends CI_Controller {
         echo "Total Fees: " . $result['total_fees'] . " Taka<br>";
         echo "Total Fine: " . $result['total_fine'] . " Taka<br>";
         echo "Total Payable: " . $result['total_payable'] . " Taka<br>";
+
+        $month_number = date('n', strtotime('MAY'));
+
+echo $month_number; // Output: 5
     }
 }
