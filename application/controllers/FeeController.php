@@ -17,8 +17,23 @@ class FeeController extends CI_Controller {
         echo "Total Fine: " . $result['total_fine'] . " Taka<br>";
         echo "Total Payable: " . $result['total_payable'] . " Taka<br>";
 
-        $month_number = date('n', strtotime('MAY'));
-
-echo $month_number; // Output: 5
     }
+
+    public function getMonthNumber($year, $month) {
+        // Calculate the base month number for the starting year (2024)
+        $baseYear = 2024;
+        $baseMonth = 1; // January
+        
+        // Calculate the month number
+        echo ($year - $baseYear) * 12 + ($month - $baseMonth + 1);
+
+        /*// Example usage
+        echo getMonthNumber(2024, 1); // Output: 1 (January 2024)
+        echo getMonthNumber(2024, 2); // Output: 2 (February 2024)
+        echo getMonthNumber(2025, 1); // Output: 13 (January 2025)
+        echo getMonthNumber(2025, 2); // Output: 14 (February 2025) */
+    }
+
+    
+
 }

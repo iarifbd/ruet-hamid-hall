@@ -35,6 +35,7 @@
                                             <table class="table table-striped table-hover table-bordered mydatatable">
                                                 <thead class="table-striped">
                                                     <tr>
+                                                        <th>SL#</th>
                                                         <th>Student#</th>
                                                         <th>Dr</th>
                                                         <th>Cr</th>
@@ -45,6 +46,7 @@
                                                 </thead>
                                                 <tfoot>
                                                     <tr>
+                                                        <th>SL#</th>
                                                         <th>Student#</th>
                                                         <th>Dr</th>
                                                         <th>Cr</th>
@@ -56,6 +58,7 @@
                                                 <tbody>
                                                     <?php foreach ($stuacc as $key => $value): ?>
                                                     <tr>
+                                                        <td><?php echo ($key+1); ?></td>
                                                         <td><?php echo $value['S_Id']; ?></td>
                                                         <td><?php echo $value['Dr']; ?></td>
                                                         <td><?php echo $value['Cr']; ?></td>
