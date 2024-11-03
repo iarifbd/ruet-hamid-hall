@@ -35,11 +35,11 @@
                                             <table class="table table-striped table-hover table-bordered mydatatable">
                                                 <thead class="table-striped">
                                                     <tr>
+                                                        <th>SL#</th>
                                                         <th>Student#</th>
                                                         <th>Bill Date</th>
                                                         <th>Last Date</th>
                                                         <th>Description</th>
-                                                        <th>Acc Head</th>
                                                         <th>Dr</th>
                                                         <th>Cr</th>
                                                         <th>Balance</th>
@@ -67,11 +67,11 @@
                                                         $totalBalance += $value['balance'];
                                                     ?>
                                                     <tr>
+                                                        <td><?php echo ($key+1); ?></td>
                                                         <td><?php echo $value['S_Id']; ?></td>
                                                         <td><?php echo $value['gdate']; ?></td>
                                                         <td><?php echo $value['ldate']; ?></td>
                                                         <td><?php echo $value['description']; ?></td>
-                                                        <td><?php echo $value['achead']; ?></td>
                                                         <td><?php echo number_format($value['dr'], 2); ?></td>
                                                         <td><?php echo number_format($value['cr'], 2); ?></td>
                                                         <td><?php echo number_format($value['balance'], 2); ?></td>

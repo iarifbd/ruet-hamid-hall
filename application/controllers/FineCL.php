@@ -10,7 +10,14 @@ class FineCL extends CI_Controller {
         $this->load->model('Fine_model');
     }
 
-    public function index($gdate) {
+    public function index($gdate){
+        $this->defaulters($gdate);
+    }
+
+
+    public function defaulters($gdate) {
+
+
         // Get the defaulters information
         $defaulters = $this->Fine_model->getDefalders($gdate);
         
@@ -29,23 +36,22 @@ class FineCL extends CI_Controller {
             $hallCharge = number_format(500, 2);
             $totalDue = number_format($hallCharge + $fineAmount, 2);
 
-            // Generate new bill entry
+            // Generate new Fines 
             $newBills[] = [
                 'gdate' => $gdate,
                 'ldate' => $lastDateOfMonth,
                 'tdate' => '0000-00-00',
                 'S_Id' => $defaulter['S_Id'],
                 'description' => sprintf(
-                    'Hall Charge: %s' . PHP_EOL . 'Delay Fine on %s (for %d Month): %s',
-                    $hallCharge,
+                    'Delay Fine on %s (for %d Month): %s',
                     $defaulter['ldate'],
                     $monthCount,
                     $fineAmount
                 ),
                 'acctype' => 'Dr',
-                'dr' => $totalDue,
+                'dr' => $fineAmount,
                 'cr' => number_format(0, 2),
-                'balance' => $totalDue,
+                'balance' => $fineAmount,
                 'status' => 'Due'
             ];
         }
@@ -53,7 +59,7 @@ class FineCL extends CI_Controller {
         $data=$newBills;
 
         // Save to student ledger
-        $this->Fine_model->NewBill($data);
+        $this->Fine_model->NewFine($data);
 
         // Output the generated bills
         echo "<pre>";

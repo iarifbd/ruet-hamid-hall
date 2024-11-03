@@ -13,9 +13,12 @@ class Fine_model extends CI_Model {
         return $query->result_array();       
     }
 
+    public function NewFine($data) {
+        return $this->db->insert_batch('studentledger', $data); // Insert multiple records into studentledger
+    }
 
     public function NewBill($data) {
-        return $this->db->insert_batch('studentledger', $data); // Insert multiple records into studentledger
+        return $this->db->insert('studentledger', $data); // Insert multiple records into studentledger
     }
 
     
