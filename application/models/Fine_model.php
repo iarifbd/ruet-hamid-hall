@@ -5,7 +5,7 @@ class Fine_model extends CI_Model {
 
     public function getDefalders($ldate) {
         // Use the correct syntax for where conditions
-        $this->db->where('status', 'Not Paid');
+        $this->db->where('status', 'Due');
         $this->db->where('ldate <', $ldate);
         $query = $this->db->get('studentledger');
 

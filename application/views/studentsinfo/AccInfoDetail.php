@@ -36,9 +36,9 @@
                                                 <thead class="table-striped">
                                                     <tr>
                                                         <th>Student#</th>
-                                                        <th>Date</th>
+                                                        <th>Bill Date</th>
+                                                        <th>Last Date</th>
                                                         <th>Description</th>
-                                                        <th>Acc Type</th>
                                                         <th>Acc Head</th>
                                                         <th>Dr</th>
                                                         <th>Cr</th>
@@ -68,9 +68,9 @@
                                                     ?>
                                                     <tr>
                                                         <td><?php echo $value['S_Id']; ?></td>
-                                                        <td><?php echo $value['tdate']; ?></td>
+                                                        <td><?php echo $value['gdate']; ?></td>
+                                                        <td><?php echo $value['ldate']; ?></td>
                                                         <td><?php echo $value['description']; ?></td>
-                                                        <td><?php echo $value['acctype']; ?></td>
                                                         <td><?php echo $value['achead']; ?></td>
                                                         <td><?php echo number_format($value['dr'], 2); ?></td>
                                                         <td><?php echo number_format($value['cr'], 2); ?></td>

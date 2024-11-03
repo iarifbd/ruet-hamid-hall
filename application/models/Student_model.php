@@ -59,19 +59,4 @@ class Student_model extends CI_Model {
     }
 
 
-    public function stuDues($S_Id){
-        // filter by that S_Id
-         $this->db->where('S_Id', $S_Id);
-         $this->db->where('status', 'Not Paid');
-
-        // Order the results by 'id'
-        $this->db->order_by('month', 'ASC');
-        $this->db->order_by('year', 'ASC');
-
-        // Execute the query on the 'studentledger' table
-        $query = $this->db->get('dues');
-
-        // Return the result as an array
-        return $query->result_array();        
-    }
 }
