@@ -13,3 +13,4 @@ $route['editor/view/(:num)'] = 'editor/view/$1';
 
 $route['StudentInfo/StuAcc/(:num)'] = 'StudentInfo/StuAcc/$1';
 $route['StudentInfo/StuLedDetail/(:num)'] = 'StudentInfo/StuLedDetail/$1';
+$route['FineCL/index/(:num)'] = 'FineCL/index/$1';
