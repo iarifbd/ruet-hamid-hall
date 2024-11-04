@@ -1,34 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Error</title>
-    <style>
-        body {
-             display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            background-color: #f8f9fa;
-            font-family: 'Arial', sans-serif;
-        }
-        .error-container {
-            text-align: center;
-        }
-        .error-code {
-            font-size: 100px;
-            font-weight: bold;
-            color: #dc3545;
-            animation: bounce 1s infinite;}
-    </style>
-</head>
-<body>
-    <div class="error-container">
-        <h1>An Error Occurred</h1>
-        <p>Sorry, something went wrong.</p>
-        <p><strong>Error Message:</strong> <?php echo htmlspecialchars($message); ?></p>
-        <p><strong>Error Code:</strong> <?php echo htmlspecialchars($code); ?></p>
-    </div>
-</body>
-</html>
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+?>
+
+<div style="border:1px solid #990000;padding-left:20px;margin:0 0 10px 0;">
+
+<h4>An uncaught Exception was encountered</h4>
+
+<p>Type: <?php echo get_class($exception); ?></p>
+<p>Message: <?php echo $message; ?></p>
+<p>Filename: <?php echo $exception->getFile(); ?></p>
+<p>Line Number: <?php echo $exception->getLine(); ?></p>
+
+<?php if (defined('SHOW_DEBUG_BACKTRACE') && SHOW_DEBUG_BACKTRACE === TRUE): ?>
+
+	<p>Backtrace:</p>
+	<?php foreach ($exception->getTrace() as $error): ?>
+
+		<?php if (isset($error['file']) && strpos($error['file'], realpath(BASEPATH)) !== 0): ?>
+
+			<p style="margin-left:10px">
+			File: <?php echo $error['file']; ?><br />
+			Line: <?php echo $error['line']; ?><br />
+			Function: <?php echo $error['function']; ?>
+			</p>
+		<?php endif ?>
+
+	<?php endforeach ?>
+
+<?php endif ?>
+
+</div>
