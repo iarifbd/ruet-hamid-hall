@@ -9,32 +9,22 @@ class Hostel_model extends CI_Model {
     }
 
     // Get all seating plans
-    public function get_all_seats() {
-        $query = $this->db->get('hostel_sit_plan');
+    public function get_all_floor() {
+        $this->db->where('status', 'active');
+        $query = $this->db->get('hostel_floor');
         return $query->result_array();
     }
 
-    // Get a single seat by ID
-    public function get_seat_by_id($id) {
-        $this->db->where('id', $id);
-        $query = $this->db->get('hostel_sit_plan');
-        return $query->row_array(); // Return a single row
+    public function get_all_room() {
+        $this->db->where('status', 'active');
+        $query = $this->db->get('hostel_room');
+        return $query->result_array();
     }
 
-    // Insert a new seat
-    public function insert_seat($data) {
-        return $this->db->insert('hostel_sit_plan', $data);
+    public function get_all_sit() {
+        $this->db->where('status', 'active');
+        $query = $this->db->get('hostel_sit');
+        return $query->result_array();
     }
 
-    // Update an existing seat
-    public function update_seat($id, $data) {
-        $this->db->where('id', $id);
-        return $this->db->update('hostel_sit_plan', $data);
-    }
-
-    // Delete a seat
-    public function delete_seat($id) {
-        $this->db->where('id', $id);
-        return $this->db->delete('hostel_sit_plan');
-    }
 }
