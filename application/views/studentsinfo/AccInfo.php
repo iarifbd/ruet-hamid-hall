@@ -40,7 +40,6 @@
                                                         <th>Dr</th>
                                                         <th>Cr</th>
                                                         <th>Balance</th>
-                                                        <th>Status</th>
                                                         <th class="no-print">Action</th>
                                                     </tr>
                                                 </thead>
@@ -51,7 +50,6 @@
                                                         <th>Dr</th>
                                                         <th>Cr</th>
                                                         <th>Balance</th>
-                                                        <th>Status</th>
                                                         <th class="no-print">Action</th>
                                                     </tr>
                                                 </tfoot>
@@ -62,8 +60,7 @@
                                                         <td><?php echo $value['S_Id']; ?></td>
                                                         <td><?php echo $value['Dr']; ?></td>
                                                         <td><?php echo $value['Cr']; ?></td>
-                                                        <td><?php echo $value['Balance']; ?></td>
-                                                        <td><span class="badge <?php echo ($value['Status']=='Paid')?"bg-success" :"bg-danger" ?> "><?php echo $value['Status']; ?></span></td>
+                                                        <td><span class="badge <?php echo ($value['Balance']==0)?"bg-success" :"bg-danger" ?> "><?php echo $value['Balance']; ?></span></td>
                                                         <td class="no-print">
                                                             <div class="btn-group" role="group" aria-label="Action buttons">
                                                                 <a href="<?php echo site_url('StudentInfo/StuLedDetail/' . $value['S_Id']); ?>" class="btn btn-primary btn-sm">

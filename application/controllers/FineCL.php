@@ -11,8 +11,8 @@ class FineCL extends CI_Controller {
     }
 
     public function index($gdate){
-        $this->FineCal($gdate);
         $this->HCCal($gdate);
+        $this->FineCal($gdate);
     }
 
     public function FineCal($gdate){
