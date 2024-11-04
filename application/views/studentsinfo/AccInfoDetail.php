@@ -91,6 +91,7 @@
                                         document.getElementById('total-balance').innerText = '<?php echo number_format($totalBalance, 2); ?>';
                                     </script>
                                 </div>
+                                <p>HC: Hall CHarge, DF: Delay Fine</p>
                             </div>
                         </div>
                     </div>
