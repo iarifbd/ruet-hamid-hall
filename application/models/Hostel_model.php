@@ -27,4 +27,22 @@ class Hostel_model extends CI_Model {
         return $query->result_array();
     }
 
+    public function SitPlan() {
+        $query = $this->db->get('hostel_sit_plan');
+        return $query->result_array();
+    }
+
+    public function CheckSitPlan($hallName,$floor,$room,$sit){
+        $this->db->where('hall_name',$hallName );
+        $this->db->where('floor', $floor);
+        $this->db->where('room_num', $room);
+        $this->db->where('sit_num', $sit);
+        $query = $this->db->get('hostel_sit_plan');
+        return $query->result_array();
+    }
+
+    public function SitPlanSave($data){
+        $this->db->insert_batch('hostel_sit_plan', $data);
+    }
+
 }
