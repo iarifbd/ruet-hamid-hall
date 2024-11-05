@@ -58,7 +58,7 @@ class Hostel_model extends CI_Model {
         }
 
         // Return the dynamically built nested structure
-        return $hostel_plan;
+        return $VSitPlan;
     }
 
 
