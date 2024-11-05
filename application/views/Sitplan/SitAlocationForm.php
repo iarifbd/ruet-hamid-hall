@@ -24,12 +24,23 @@
                                     <h5 class="mb-0">Student Seat Allotment</h5>
                                 </div>
                                 <div class="card-body">
-                                    <form action="<?php echo site_url('hostel_sit_plan/save'); ?>" method="post">
+                                    <form action="<?php echo site_url('hostel_sit_plan/saveAlotment'); ?>" method="post">
                                         <div class="row">
                                             <!-- Student ID -->
                                             <div class="col-md-4 mb-3">
                                                 <label for="studentId" class="form-label">Student ID</label>
                                                 <input type="number" name="studentId" class="form-control" id="studentId" placeholder="Enter Student ID" required>
+                                            </div>
+
+                                            <!-- Student ID -->
+                                            <div class="col-md-4 mb-3">
+                                                <label for="hall_name" class="form-label">Hall Name</label>
+                                                <select name="seatNumber" id="seatNumber"class="form-control selectpicker" data-live-search="true" data-width="100%" required>
+                                                    <option value="" disabled selected>Select Seat Number</option>
+                                                    <?php foreach ($vsit_plan as $key => $hall_name) {?>
+                                                       <option value="<?php echo $hall_name['hall_name']; ?>"><?php echo $hall_name['hall_name']; ?></option>
+                                                    <?php }; ?>
+                                                </select>
                                             </div>
 
                                             <!-- Floor -->
