@@ -38,41 +38,26 @@ class Hostel_model extends CI_Model {
         $query = $this->db->get('hostel_sit_plan');
         $VSitPlan = $query->result_array(); // Resulting array of vacant seat rows
 
-        // Initialize the main array for halls
+        // Initialize the main array for hostel plan
         $hostel_plan = [];
 
         // Loop through each row and build the nested structure
         foreach ($VSitPlan as $row) {
-            $hall = $row['hall_name'];
-            $floor = $row['floor'];
-            $room = $row['room_num'];
-            $sit = $row['sit_num'];
-
-            // Initialize hall if not already present
-            if (!isset($hostel_plan[$hall])) {
-                $hostel_plan[$hall] = [];
-            }
-
-            // Initialize floor if not already present in the hall
-            if (!isset($hostel_plan[$hall][$floor])) {
-                $hostel_plan[$hall][$floor] = [];
-            }
-
-            // Initialize room if not already present on the floor
-            if (!isset($hostel_plan[$hall][$floor][$room])) {
-                $hostel_plan[$hall][$floor][$room] = [];
-            }
-
-            // Add the seat to the room
+            $hall = $row['hall_name'];        // Hall Name
+            $floor = $row['floor'];           // Floor Number
+            $room = $row['room_num'];         // Room Number
+            $sit = $row['sit_num'];           // Seat Number (Sit ID)
+            
+            // Dynamically create the structure based on hall, floor, room, and seat
             $hostel_plan[$hall][$floor][$room][$sit] = [
-                'S_Id' => $row['S_Id'], // Student ID
-                'adate' => $row['adate'], // Allocation Date
-                'vdate' => $row['vdate'], // Vacant Date
-                'status' => $row['status'] // Seat status (vacant)
+                'S_Id'   => $row['S_Id'],    // Student ID
+                'adate'  => $row['adate'],   // Allocation Date
+                'vdate'  => $row['vdate'],   // Vacant Date
+                'status' => $row['status']   // Seat status (vacant)
             ];
         }
 
-        // Return the nested structure
+        // Return the dynamically built nested structure
         return $hostel_plan;
     }
 
