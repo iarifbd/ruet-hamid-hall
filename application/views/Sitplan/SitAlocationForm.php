@@ -91,9 +91,10 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                                                <div class="col-md-12">
+                        <div class="col-md-12 mt-5">
+                            <hr>
+                            <h1>Hostel ALocation Status:</h1>
+                        </div>
                             <?php 
                                 foreach ($sit_plan as $item) {
                                     $status_class = ($item['status'] == 'vacant') ? 'bg-success' : 'bg-danger';
@@ -106,6 +107,7 @@
                                                     <strong>Floor:</strong> ' . $item['floor'] . '<br>
                                                     <strong>Room Number:</strong> ' . $item['room_num'] . '<br>
                                                     <strong>Seat Number:</strong> ' . $item['sit_num'] . '<br>
+                                                    <strong>Student Id:</strong> ' . $item['S_Id'] . '<br>
                                                     <strong>Status:</strong> <span class="badge ' . $status_class . '">' . ucfirst($item['status']) . '</span>
                                                 </p>
                                             </div>
@@ -114,7 +116,6 @@
                                     ';
                                 }
                             ?>
-                        </div>
                     </div>
                 </div>
             </main>
