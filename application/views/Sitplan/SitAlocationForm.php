@@ -46,7 +46,7 @@
                                             <!-- Room Number -->
                                             <div class="col-md-4 mb-3">
                                                 <label for="roomNumber" class="form-label">Room Number</label>
-                                                <select name="roomNumber" class="form-select" id="roomNumber" required>
+                                                <select name="roomNumber" id="roomNumber"class="form-control selectpicker" data-live-search="true" data-width="100%" required>
                                                     <option value="" disabled selected>Select Room Number</option>
                                                     <?php foreach ($vsit_plan as $key => $room_num) {?>
                                                        <option value="<?php echo $room_num['room_num']; ?>"><?php echo $room_num['room_num']; ?></option>
@@ -57,7 +57,7 @@
                                             <!-- Seat Number -->
                                             <div class="col-md-4 mb-3">
                                                 <label for="seatNumber" class="form-label">Seat Number</label>
-                                                <select name="seatNumber" class="form-select" id="seatNumber" required>
+                                                <select name="seatNumber" id="seatNumber"class="form-control selectpicker" data-live-search="true" data-width="100%" required>
                                                     <option value="" disabled selected>Select Seat Number</option>
                                                     <?php foreach ($vsit_plan as $key => $sit_num) {?>
                                                        <option value="<?php echo $sit_num['sit_num']; ?>"><?php echo $sit_num['sit_num']; ?></option>
@@ -68,12 +68,12 @@
                                             <!-- Allocation Date -->
                                             <div class="col-md-4 mb-3">
                                                 <label for="allocationDate" class="form-label">Allocation Date</label>
-                                                <input type="date" name="allocationDate" class="form-control" id="allocationDate" required>
+                                                <input type="date" name="allocationDate" class="form-control" id="allocationDate" value="<?php echo date('Y-m-d'); ?>" required>
                                             </div>
                                         </div>
 
                                         <!-- Submit Button -->
-                                        <div class="card-footer text-end">
+                                        <div class="card-footer ">
                                             <button type="submit" class="btn btn-primary">Save Allotment</button>
                                         </div>
                                     </form>

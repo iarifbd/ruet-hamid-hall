@@ -33,10 +33,49 @@ class Hostel_model extends CI_Model {
     }
 
     public function VSitPlan() {
+        // Fetch all rows with 'vacant' status
         $this->db->where('status', 'vacant');
         $query = $this->db->get('hostel_sit_plan');
-        return $query->result_array();
+        $VSitPlan = $query->result_array(); // Resulting array of vacant seat rows
+
+        // Initialize the main array for halls
+        $hostel_plan = [];
+
+        // Loop through each row and build the nested structure
+        foreach ($VSitPlan as $row) {
+            $hall = $row['hall_name'];
+            $floor = $row['floor'];
+            $room = $row['room_num'];
+            $sit = $row['sit_num'];
+
+            // Initialize hall if not already present
+            if (!isset($hostel_plan[$hall])) {
+                $hostel_plan[$hall] = [];
+            }
+
+            // Initialize floor if not already present in the hall
+            if (!isset($hostel_plan[$hall][$floor])) {
+                $hostel_plan[$hall][$floor] = [];
+            }
+
+            // Initialize room if not already present on the floor
+            if (!isset($hostel_plan[$hall][$floor][$room])) {
+                $hostel_plan[$hall][$floor][$room] = [];
+            }
+
+            // Add the seat to the room
+            $hostel_plan[$hall][$floor][$room][$sit] = [
+                'S_Id' => $row['S_Id'], // Student ID
+                'adate' => $row['adate'], // Allocation Date
+                'vdate' => $row['vdate'], // Vacant Date
+                'status' => $row['status'] // Seat status (vacant)
+            ];
+        }
+
+        // Return the nested structure
+        return $hostel_plan;
     }
+
 
     public function CheckSitPlan($hallName,$floor,$room,$sit){
         $this->db->where('hall_name',$hallName );
