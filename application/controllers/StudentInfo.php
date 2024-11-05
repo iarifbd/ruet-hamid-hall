@@ -30,7 +30,6 @@ class StudentInfo extends CI_Controller {
         $this->load->view('studentsinfo/student_form', $data); // Load the form view
     }
 
-
     public function SInfosave() {
             $id = $this->input->post('id');
             $data = [

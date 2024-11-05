@@ -13,7 +13,7 @@
                 <div class="container-fluid px-4">
                     <div class="row mt-5">
                         <div class="col-12 text-end">
-                            <a href="<?php echo site_url('hostel_sit_plan/add'); ?>" class="btn btn-primary mb-3">
+                            <a href="<?php echo site_url('hostel_sit_plan'); ?>" class="btn btn-primary mb-3">
                                 <i class="fa fa-plus" aria-hidden="true"></i> Add New Seat
                             </a>
                         </div>
@@ -21,53 +21,66 @@
                             <div class="card mb-4 shadow-sm">
                                 <div class="card-header d-flex align-items-center">
                                     <i class="fas fa-box me-2"></i>
-                                    <h5 class="mb-0"><?php echo isset($sit_plan) && !empty($sit_plan) ? 'Edit Seat Information' : 'Add Seat Information'; ?></h5>
+                                    <h5 class="mb-0">Student Seat Allotment</h5>
                                 </div>
                                 <div class="card-body">
                                     <form action="<?php echo site_url('hostel_sit_plan/save'); ?>" method="post">
-                                        <input type="hidden" name="id" value="<?php echo isset($sit_plan[0]['id']) ? $sit_plan[0]['id'] : ''; ?>">
-                                        
                                         <div class="row">
-                                            <div class="col-md-6 mb-3">
-                                                <label for="floor" class="form-label">Floor:</label>
-                                                <input type="text" id="floor" name="floor" class="form-control" value="<?php echo isset($sit_plan[0]['floor']) ? $sit_plan[0]['floor'] : ''; ?>" required>
+                                            <!-- Student ID -->
+                                            <div class="col-md-4 mb-3">
+                                                <label for="studentId" class="form-label">Student ID</label>
+                                                <input type="number" name="studentId" class="form-control" id="studentId" placeholder="Enter Student ID" required>
                                             </div>
-                                            <div class="col-md-6 mb-3">
-                                                <label for="room_num" class="form-label">Room Number:</label>
-                                                <input type="text" id="room_num" name="room_num" class="form-control" value="<?php echo isset($sit_plan[0]['room_num']) ? $sit_plan[0]['room_num'] : ''; ?>" required>
-                                            </div>
-                                            <div class="col-md-6 mb-3">
-                                                <label for="sit_num" class="form-label">Seat Number:</label>
-                                                <input type="text" id="sit_num" name="sit_num" class="form-control" value="<?php echo isset($sit_plan[0]['sit_num']) ? $sit_plan[0]['sit_num'] : ''; ?>" required>
-                                            </div>
-                                            <div class="col-md-6 mb-3">
-                                                <label for="S_Id" class="form-label">Student ID:</label>
-                                                <input type="number" id="S_Id" name="S_Id" class="form-control" value="<?php echo isset($sit_plan[0]['S_Id']) ? $sit_plan[0]['S_Id'] : ''; ?>" required>
-                                            </div>
-                                            <div class="col-md-6 mb-3">
-                                                <label for="adate" class="form-label">Allocation Date:</label>
-                                                <input type="date" id="adate" name="adate" class="form-control" value="<?php echo isset($sit_plan[0]['adate']) ? $sit_plan[0]['adate'] : ''; ?>" required>
-                                            </div>
-                                            <div class="col-md-6 mb-3">
-                                                <label for="vdate" class="form-label">Vacate Date:</label>
-                                                <input type="date" id="vdate" name="vdate" class="form-control" value="<?php echo isset($sit_plan[0]['vdate']) ? $sit_plan[0]['vdate'] : ''; ?>">
-                                            </div>
-                                            <div class="col-md-6 mb-3">
-                                                <label for="status" class="form-label">Status:</label>
-                                                <select id="status" name="status" class="form-control" required>
-                                                    <option value="vacant" <?php echo (isset($sit_plan[0]['status']) && $sit_plan[0]['status'] == 'vacant') ? 'selected' : ''; ?>>Vacant</option>
-                                                    <option value="occupied" <?php echo (isset($sit_plan[0]['status']) && $sit_plan[0]['status'] == 'occupied') ? 'selected' : ''; ?>>Occupied</option>
+
+                                            <!-- Floor -->
+                                            <div class="col-md-4 mb-3">
+                                                <label for="floor" class="form-label">Floor</label>
+                                                <select name="floor" id="floor" class="form-control selectpicker" data-live-search="true" data-width="100%" required>
+                                                    <option value="" disabled selected>Select Floor</option>
+                                                    <?php foreach ($vsit_plan as $key => $floor) {?>
+                                                       <option value="<?php echo $floor['floor']; ?>"><?php echo $floor['floor']; ?></option>
+                                                    <?php }; ?>
                                                 </select>
                                             </div>
+
+                                            <!-- Room Number -->
+                                            <div class="col-md-4 mb-3">
+                                                <label for="roomNumber" class="form-label">Room Number</label>
+                                                <select name="roomNumber" class="form-select" id="roomNumber" required>
+                                                    <option value="" disabled selected>Select Room Number</option>
+                                                    <?php foreach ($vsit_plan as $key => $room_num) {?>
+                                                       <option value="<?php echo $room_num['room_num']; ?>"><?php echo $room_num['room_num']; ?></option>
+                                                    <?php }; ?>
+                                                </select>
+                                            </div>
+
+                                            <!-- Seat Number -->
+                                            <div class="col-md-4 mb-3">
+                                                <label for="seatNumber" class="form-label">Seat Number</label>
+                                                <select name="seatNumber" class="form-select" id="seatNumber" required>
+                                                    <option value="" disabled selected>Select Seat Number</option>
+                                                    <?php foreach ($vsit_plan as $key => $sit_num) {?>
+                                                       <option value="<?php echo $sit_num['sit_num']; ?>"><?php echo $sit_num['sit_num']; ?></option>
+                                                    <?php }; ?>
+                                                </select>
+                                            </div>
+
+                                            <!-- Allocation Date -->
+                                            <div class="col-md-4 mb-3">
+                                                <label for="allocationDate" class="form-label">Allocation Date</label>
+                                                <input type="date" name="allocationDate" class="form-control" id="allocationDate" required>
+                                            </div>
                                         </div>
-                                        <button type="submit" class="btn btn-primary"><?php echo isset($sit_plan) && !empty($sit_plan) ? 'Update' : 'Submit'; ?></button>
+
+                                        <!-- Submit Button -->
+                                        <div class="card-footer text-end">
+                                            <button type="submit" class="btn btn-primary">Save Allotment</button>
+                                        </div>
                                     </form>
                                 </div>
                             </div>
-                            <div class="card-footer text-end">
-                                <div class="mdtbtn"></div>
-                            </div>
                         </div>
+
                     </div>
                 </div>
             </main>

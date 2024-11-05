@@ -32,6 +32,12 @@ class Hostel_model extends CI_Model {
         return $query->result_array();
     }
 
+    public function VSitPlan() {
+        $this->db->where('status', 'vacant');
+        $query = $this->db->get('hostel_sit_plan');
+        return $query->result_array();
+    }
+
     public function CheckSitPlan($hallName,$floor,$room,$sit){
         $this->db->where('hall_name',$hallName );
         $this->db->where('floor', $floor);

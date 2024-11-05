@@ -11,7 +11,7 @@ class Hostel_sit_plan extends CI_Controller {
 
     // Display the list of seating plans
     public function index() {
-        $data['sit_plans'] = $this->Hostel_model->get_all_seats();
+        $data['vsit_plan']=$this->Hostel_model->VSitPlan();
         $this->load->view('Sitplan/SitAlocationForm', $data);
     }
 
