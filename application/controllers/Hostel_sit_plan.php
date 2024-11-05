@@ -14,9 +14,9 @@ class Hostel_sit_plan extends CI_Controller {
         $data['vsit_plan']=$this->Hostel_model->VSitPlan();
        // $this->load->view('Sitplan/SitAlocationForm', $data);
         // Print the resulting array
-        
+         $floor_numbers = array_keys( $data['vsit_plan']['floor']);
         echo "<pre>";
-        print_r($data);
+        print_r($floor_numbers);
         echo "</pre>";
     }
 
