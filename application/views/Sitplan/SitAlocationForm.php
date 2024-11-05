@@ -35,7 +35,7 @@
                                             <!-- Student ID -->
                                             <div class="col-md-4 mb-3">
                                                 <label for="hall_name" class="form-label">Hall Name</label>
-                                                <select name="seatNumber" id="seatNumber"class="form-control selectpicker" data-live-search="true" data-width="100%" required>
+                                                <select name="hall_name" id="hall_name"class="form-control selectpicker" data-live-search="true" data-width="100%" required>
                                                     <option value="" disabled selected>Select Seat Number</option>
                                                     <?php foreach ($vsit_plan as $key => $hall_name) {?>
                                                        <option value="<?php echo $hall_name['hall_name']; ?>"><?php echo $hall_name['hall_name']; ?></option>
@@ -91,7 +91,30 @@
                                 </div>
                             </div>
                         </div>
-
+                    </div>
+                    <div class="row">
+                                                <div class="col-md-12">
+                            <?php 
+                                foreach ($sit_plan as $item) {
+                                    $status_class = ($item['status'] == 'vacant') ? 'bg-success' : 'bg-danger';
+                                    echo '
+                                    <div class="col-md-2 mb-4">
+                                        <div class="card h-100">
+                                            <div class="card-body">
+                                                <h5 class="card-title">' . $item['hall_name'] . '</h5>
+                                                <p class="card-text">
+                                                    <strong>Floor:</strong> ' . $item['floor'] . '<br>
+                                                    <strong>Room Number:</strong> ' . $item['room_num'] . '<br>
+                                                    <strong>Seat Number:</strong> ' . $item['sit_num'] . '<br>
+                                                    <strong>Status:</strong> <span class="badge ' . $status_class . '">' . ucfirst($item['status']) . '</span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    ';
+                                }
+                            ?>
+                        </div>
                     </div>
                 </div>
             </main>

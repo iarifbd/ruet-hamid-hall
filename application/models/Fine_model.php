@@ -107,4 +107,8 @@ class Fine_model extends CI_Model {
         return $this->db->insert_batch('studentledger', $data); // Insert multiple records into studentledger
     }
 
+    public function ApplyHC($data) {
+        return $this->db->insert('studentledger', $data); // Insert multiple records into studentledger
+    }
+
 }

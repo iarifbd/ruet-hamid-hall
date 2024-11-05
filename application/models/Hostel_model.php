@@ -28,6 +28,13 @@ class Hostel_model extends CI_Model {
     }
 
     public function SitPlan() {
+        // Apply the ordering before executing the query
+        $this->db->order_by('hall_name', 'ASC');
+        $this->db->order_by('floor', 'ASC');
+        $this->db->order_by('room_num', 'ASC');
+        $this->db->order_by('sit_num', 'DEC');
+
+        // Now fetch the results
         $query = $this->db->get('hostel_sit_plan');
         return $query->result_array();
     }
@@ -57,4 +64,7 @@ class Hostel_model extends CI_Model {
     public function saveAlotment($data){
         $this->db->insert('hostel_sit_plan', $data);
     }
+
+
+
 }

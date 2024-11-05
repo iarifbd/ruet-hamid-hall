@@ -6,34 +6,55 @@ class Hostel_sit_plan extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->model('Hostel_model'); // Make sure to create this model
+        $this->load->model('Fine_model'); // Make sure to create this model
         $this->load->helper('url');
     }
 
     public function index() {
         $data['vsit_plan']=$this->Hostel_model->VacentSitPlan();
+        $data['sit_plan']=$this->Hostel_model->SitPlan();
         $this->load->view('Sitplan/SitAlocationForm', $data);
     }
 
     public function saveAlotment(){
         
         $data=array(
-                'hall_name'=>$this->input->post('Hall_name'),
+                'hall_name'=>$this->input->post('hall_name'),
                 'floor'=>$this->input->post('floor'),
-                'room_num'=>$this->input->post('room'),
-                'sit_num'=>$this->input->post('sit'),
-                'S_Id'=>'',
-                'adate'=>'0000-00-00',
+                'room_num'=>$this->input->post('roomNumber'),
+                'sit_num'=>$this->input->post('seatNumber'),
+                'S_Id'=>$this->input->post('studentId'),
+                'adate'=>$this->input->post('allocationDate'),
                 'vdate'=>'0000-00-00',
-                'status'=>'vacant'
+                'status'=>'occupy'
             );
 
-
-        echo "<pre>";
-        print_r($_POST);
-
-
         //save alotment 
-       // $this->Hostel_model->saveAlotment($data);
+        $this->Hostel_model->saveAlotment($data);
+
+        // Get the last day of this month
+        $lastDateOfMonth = (new DateTime($this->input->post('allocationDate')))->modify('last day of this month')->format('Y-m-d');
+
+        $HC = array(
+                'gdate' => $this->input->post('allocationDate'),
+                'ldate' => $lastDateOfMonth,
+                'tdate' => '0000-00-00',
+                'S_Id' => $this->input->post('studentId'),
+                'description' => 'Hall Charge on '.$this->input->post('allocationDate'),
+                'acctype' => 'Dr',
+                'achead' => 'HC',
+                'dr' => number_format(500, 2),
+                'cr' => number_format(0, 2),
+                'balance' => number_format(500, 2),
+                'status' => 'Due'
+            );
+
+        //apply HC 
+        $this->Fine_model->ApplyHC($HC);
+
+        // Redirect after save
+        redirect(base_url('Hostel_sit_plan')); 
+
     }
 
     // Load the form to add a new seat
