@@ -10,9 +10,16 @@ class FineCL extends CI_Controller {
         $this->load->model('Fine_model');
     }
 
-    public function index($gdate){
+    public function index(){
+        $this->load->view('studentsinfo/applyfees');
+    }
+
+    public function ApplyFees(){
+        $gdate=$this->input->post('date');
         $this->HCCal($gdate);
         $this->FineCal($gdate);
+        $this->session->set_flashdata('success', 'Charges have been applied successfully.');
+        redirect(base_url('FineCL'));
     }
 
     public function FineCal($gdate){
