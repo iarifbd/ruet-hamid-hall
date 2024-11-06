@@ -93,7 +93,8 @@
                         </div>
                         <div class="col-md-12 mt-5">
                             <hr>
-                            <h1>Hostel ALocation Status:</h1>
+                            <h1>Hostel Alocation Status:</h1>
+                            <hr>
                         </div>
                             <?php 
                                 foreach ($sit_plan as $item) {
