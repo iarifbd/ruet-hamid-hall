@@ -116,18 +116,18 @@ ORDER BY
 
 -- Step 1: Create a new table with the same structure but with an identity column
 CREATE TABLE [dbo].[studentledger_new] (
-    id INT IDENTITY(1,1), -- Identity column
-    gdate DATETIME,
-    ldate DATETIME,
-    tdate DATETIME,
-    S_Id INT,
-    description VARCHAR(255),
-    acctype VARCHAR(50),
-    achead VARCHAR(50),
-    dr DECIMAL(18, 2),
-    cr DECIMAL(18, 2),
-    balance DECIMAL(18, 2),
-    status VARCHAR(50)
+    [id] INT IDENTITY(1,1) NOT NULL PRIMARY KEY,            -- Auto-increment, not nullable
+    [gdate] date NOT NULL,                                  -- Required field
+    [ldate] date NOT NULL DEFAULT '0000-00-00',             -- Required field
+    [tdate] date NOT NULL DEFAULT '0000-00-00',             -- Required field
+    [S_Id] INT NOT NULL,                                    -- Required field
+    [description] NVARCHAR(255) NOT NULL,                   -- Required field
+    [acctype] NVARCHAR(50) NOT NULL,                        -- Required field
+    [achead] NVARCHAR(50) NOT NULL,                         -- Required field
+    [dr] DECIMAL(18, 2) NOT NULL,                           -- Required field
+    [cr] DECIMAL(18, 2) NOT NULL,                           -- Required field
+    [balance] DECIMAL(18, 2) NOT NULL,                      -- Required field
+    [status] NVARCHAR(50) NOT NULL      
 );
 
 -- Step 2: Insert data into the new table, generating the new ID
@@ -141,3 +141,14 @@ DROP TABLE [dbo].[studentledger];
 
 -- Step 4: Rename the new table to the original table name
 EXEC sp_rename 'dbo.studentledger_new', 'studentledger';
+
+
+
+-----------------SQL FOR SUM------------------------
+SELECT
+    SUM(CASE WHEN achead = 'F' THEN dr ELSE 0 END) AS SUM_F,
+    SUM(CASE WHEN achead = 'HC' THEN dr ELSE 0 END) AS SUM_HC,
+    SUM(dr) AS SUM_dr,
+    SUM(cr) AS SUM_cr
+FROM studentledger
+WHERE S_Id = '1701031';
