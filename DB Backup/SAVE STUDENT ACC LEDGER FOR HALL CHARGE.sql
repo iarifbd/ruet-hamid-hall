@@ -1,20 +1,19 @@
-/*Create Student Ledger Table */
+/* Create Student Ledger Table */
 
 CREATE TABLE [dbo].[studentledger] (
     [id] INT IDENTITY(1,1) NOT NULL PRIMARY KEY,            -- Auto-increment, not nullable
     [gdate] date NOT NULL,                                  -- Required field
-    [ldate] date NOT NULL DEFAULT '0000-00-00',             -- Required field
-    [tdate] date NOT NULL DEFAULT '0000-00-00',             -- Required field
+    [ldate] date NOT NULL DEFAULT '1900-01-01',             -- Required field
+    [tdate] date NOT NULL DEFAULT '1900-01-01',             -- Required field
     [S_Id] INT NOT NULL,                                    -- Required field
     [description] NVARCHAR(255) NOT NULL,                   -- Required field
     [acctype] NVARCHAR(50) NOT NULL,                        -- Required field
     [achead] NVARCHAR(50) NOT NULL,                         -- Required field
-    [dr] DECIMAL(18, 2) NOT NULL,                           -- Required field
-    [cr] DECIMAL(18, 2) NOT NULL,                           -- Required field
-    [balance] DECIMAL(18, 2) NOT NULL,                      -- Required field
-    [status] NVARCHAR(50) NOT NULL                          -- Required field
+    [dr] DECIMAL(10, 2) NOT NULL,                           -- Required field
+    [cr] DECIMAL(10, 2) NOT NULL,                           -- Required field
+    [balance] DECIMAL(10, 2) NOT NULL,                      -- Required field
+    [status] NVARCHAR(50) NOT NULL      
 );
-
 
 
 
