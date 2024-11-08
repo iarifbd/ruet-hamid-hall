@@ -29,13 +29,9 @@
             height: 100%;
             border-radius: 50%;
             position: relative;
-            background: #f4f4f4;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
             transition: transform 3s ease-out; /* Smooth spin */
             border: 5px solid #000; /* Optional, for a border around the wheel */
+            overflow: hidden; /* Ensures segments stay within the circle */
         }
 
         /* Segments of the wheel */
@@ -52,8 +48,7 @@
             font-size: 14px;
             font-weight: bold;
             color: white;
-            border-radius: 50%;
-            padding: 5px;
+            clip-path: polygon(0 0, 100% 0, 100% 100%);
         }
 
         /* Center Circle in the wheel */
@@ -125,7 +120,6 @@
     <div id="wheel" onclick="spinWheel()">
         <!-- Center Circle -->
         <div id="center-circle"></div>
-        <!-- Wheel Segments -->
     </div>
     <!-- Pointer -->
     <div id="pointer"></div>
@@ -159,9 +153,14 @@ function createWheel() {
         const segment = document.createElement("div");
         segment.classList.add("wheel-segment");
         segment.style.backgroundColor = gift.color;
-        segment.style.transform = `rotate(${index * angleStep}deg)`;
-        segment.style.clipPath = "polygon(100% 0%, 100% 100%, 0 100%, 0 0%)"; // Creates the wedge shape
-        segment.innerHTML = gift.name;
+        segment.style.transform = `rotate(${index * angleStep}deg) skewY(${90 - angleStep}deg)`;
+        
+        // Create label
+        const label = document.createElement("span");
+        label.textContent = gift.name;
+        label.style.transform = `rotate(${angleStep / 2}deg)`;
+        segment.appendChild(label);
+
         wheel.appendChild(segment);
     });
 }
