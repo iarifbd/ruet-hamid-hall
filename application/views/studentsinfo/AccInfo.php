@@ -37,8 +37,8 @@
                                                     <tr>
                                                         <th>SL#</th>
                                                         <th>Student#</th>
-                                                        <th>Dr</th>
-                                                        <th>Cr</th>
+                                                        <th>Total Payble</th>
+                                                        <th>Paid</th>
                                                         <th>Balance</th>
                                                         <th class="no-print">Action</th>
                                                     </tr>
@@ -47,8 +47,8 @@
                                                     <tr>
                                                         <th>SL#</th>
                                                         <th>Student#</th>
-                                                        <th>Dr</th>
-                                                        <th>Cr</th>
+                                                        <th>Total Payble</th>
+                                                        <th>Paid</th>
                                                         <th>Balance</th>
                                                         <th class="no-print">Action</th>
                                                     </tr>
@@ -60,7 +60,20 @@
                                                         <td><?php echo $value['S_Id']; ?></td>
                                                         <td><?php echo $value['Dr']; ?></td>
                                                         <td><?php echo $value['Cr']; ?></td>
-                                                        <td><span class="badge <?php echo ($value['Balance']==0)?"bg-success" :"bg-danger" ?> "><?php echo $value['Balance']; ?></span></td>
+                                                    <td>
+                                                        <span class="badge <?php 
+                                                            if ($value['Balance'] == 0) {
+                                                                echo "bg-success";
+                                                            } elseif ($value['Balance'] > 0) {
+                                                                echo "bg-danger";
+                                                            } elseif ($value['Balance'] < 0) {
+                                                                echo "bg-info";
+                                                            } else {
+                                                                echo "bg-warning";
+                                                            }
+                                                        ?>"><?php echo $value['Balance']; ?></span>
+                                                    </td>
+
                                                         <td class="no-print">
                                                             <div class="btn-group" role="group" aria-label="Action buttons">
                                                                 <a href="<?php echo site_url('StudentInfo/StuLedDetail/' . $value['S_Id']); ?>" class="btn btn-primary btn-sm">

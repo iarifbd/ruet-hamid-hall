@@ -64,7 +64,7 @@
                                                     foreach ($stuacc as $key => $value): 
                                                         $totalDr += $value['dr'];
                                                         $totalCr += $value['cr'];
-                                                        $totalBalance += $value['balance'];
+                                                        $totalBalance=$totalBalance+ ($value['dr']-$value['cr']);
                                                     ?>
                                                     <tr>
                                                         <td><?php echo ($key+1); ?></td>
@@ -74,7 +74,7 @@
                                                         <td><?php echo $value['description']; ?></td>
                                                         <td><?php echo number_format($value['dr'], 2); ?></td>
                                                         <td><?php echo number_format($value['cr'], 2); ?></td>
-                                                        <td><?php echo number_format($value['balance'], 2); ?></td>
+                                                        <td><?php echo number_format($totalBalance, 2); ?></td>
                                                         <td><span class="badge <?php echo ($value['status']=='Paid') ? "bg-success" : "bg-danger"; ?>"><?php echo $value['status']; ?></span></td>
                                                     </tr>
                                                     <?php endforeach; ?>
