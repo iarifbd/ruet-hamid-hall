@@ -5,7 +5,8 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>Hostel Management System - www.asd.iarifbd.com</title>
-        <link rel="icon" href="https://asd.iarifbd.com/images/asd.ico" type="image/x-icon">
+        <!-- <link rel="icon" href="https://asd.iarifbd.com/images/asd.ico" type="image/x-icon"> -->
+        <link rel="icon" href="https://iarifbd.info/khokavai/assets/img/ASD1.png" type="image/x-icon">
 
         <!-- ************Bootstrap Select**************** -->
         <!-- Bootstrap CSS -->
