@@ -29,6 +29,7 @@
                                             <table class="table table-striped table-hover table-bordered mydatatable">
                                                 <thead class="table-striped">
                                                     <tr>
+                                                        <th>SL#</th>
                                                         <th>Student#</th>
                                                         <th>Reg_No</th>
                                                         <th>Name</th>
@@ -42,6 +43,7 @@
                                                 </thead>
                                                 <tfoot>
                                                     <tr>
+                                                        <th>SL#</th>
                                                         <th>Student#</th>
                                                         <th>Reg_No</th>
                                                         <th>Name</th>
@@ -56,6 +58,7 @@
                                                 <tbody>
                                                     <?php foreach ($stuinfo as $key => $value): ?>
                                                     <tr>
+                                                        <td><?php echo ($key+1); ?></td>
                                                         <td><?php echo $value['S_Id']; ?></td>
                                                         <td><?php echo $value['Reg_No']; ?></td>
                                                         <td><?php echo $value['Name']; ?></td>

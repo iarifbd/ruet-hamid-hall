@@ -49,6 +49,13 @@
             font-weight: bold;
             color: white;
             clip-path: polygon(0 0, 100% 0, 100% 100%);
+            padding: 10px;
+        }
+
+        .wheel-segment span {
+            transform: rotate(90deg); /* Ensures text is upright */
+            white-space: nowrap;
+            font-size: 12px;
         }
 
         /* Center Circle in the wheel */
@@ -158,7 +165,6 @@ function createWheel() {
         // Create label
         const label = document.createElement("span");
         label.textContent = gift.name;
-        label.style.transform = `rotate(${angleStep / 2}deg)`;
         segment.appendChild(label);
 
         wheel.appendChild(segment);
@@ -186,7 +192,7 @@ function spinWheel() {
         document.getElementById("win-indicator").style.visibility = 'visible'; // Show win indicator
 
         // Re-enable the button after showing result
-        document.getElementById("spin-btn").disabled = false;
+        document.getElementById("spin-btn").disabled = true;
     }, 3000); // Duration of the spin animation (in ms)
 }
 

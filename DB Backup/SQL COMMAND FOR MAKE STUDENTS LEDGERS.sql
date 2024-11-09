@@ -1,10 +1,10 @@
-/* Create Student Ledger Table */
+/*____________________ Create Student Ledger Table ______________________*/
 
 CREATE TABLE [dbo].[studentledger] (
     [id] INT IDENTITY(1,1) NOT NULL PRIMARY KEY,            -- Auto-increment, not nullable
     [gdate] date NOT NULL,                                  -- Required field
-    [ldate] date NOT NULL DEFAULT '1900-01-01',             -- Required field
-    [tdate] date NOT NULL DEFAULT '1900-01-01',             -- Required field
+    [ldate] date NOT NULL,                                  -- Required field
+    [tdate] date NOT NULL,                                  -- Required field
     [S_Id] INT NOT NULL,                                    -- Required field
     [description] NVARCHAR(255) NOT NULL,                   -- Required field
     [acctype] NVARCHAR(50) NOT NULL,                        -- Required field
@@ -16,17 +16,14 @@ CREATE TABLE [dbo].[studentledger] (
 );
 
 
-
-
-
-/*_______________________________Add data to Ledger For HC___________________________*/
+/*_______________________________ Import Hall Charge ___________________________*/
 
 
 INSERT INTO [studentledger] 
     (gdate, ldate, tdate, S_Id, description, acctype, achead, dr, cr, balance, status)
 SELECT 
     BillMonth AS gdate,              -- Use BillMonth for gdate
-    '1900-01-01' AS ldate,           -- Provide a default date for ldate
+    EOMONTH(BillMonth) AS ldate,           -- Provide a default date for ldate
     BillMonth AS tdate,              -- Use BillMonth for tdate
     S_Id,                            -- Student ID
     PurposeBill AS description,      -- Use PurposeBill for description
@@ -46,23 +43,21 @@ ORDER BY
 
 
 
-
-
-/*______________________________For Fine _________________________________________________*/
+/*_______________________________Import Fine ___________________________*/
 
 INSERT INTO [studentledger] 
     (gdate, ldate, tdate, S_Id, description, acctype, achead, dr, cr, balance, status)
 SELECT 
     BillMonth AS gdate,              -- Use BillMonth for gdate
-    '1900-01-01' AS ldate,           -- Provide a default date for ldate
+    EOMONTH(BillMonth) AS ldate,           -- Provide a default date for ldate
     BillMonth AS tdate,              -- Use BillMonth for tdate
     S_Id,                            -- Student ID
     PurposeBill AS description,      -- Use PurposeBill for description
     'Dr' AS acctype,                 -- Set acctype as 'Dr' (debit)
-    'F' AS achead,                  -- Set achead as 'HC'
-    Fine AS dr,                -- Use BillAmount for the debit amount
+    'HC_DF' AS achead,                  -- Set achead as 'HC'
+    Fine AS dr,                -- Use Fine for the debit amount
     0.00 AS cr,                      -- Set credit amount to 0
-    Fine AS balance,           -- Set balance equal to BillAmount
+    Fine AS balance,           -- Set balance equal to Fine
     CASE 
         WHEN PaymentStatus = 'Yes' THEN 'Paid' 
         ELSE 'Due' 
@@ -74,17 +69,7 @@ ORDER BY
 
 
 
-
-/*______________________________Update Date _________________________________________________*/
-
-UPDATE studentledger
-SET ldate = EOMONTH(gdate)
-WHERE ldate = '1900-01-01';
-
-
-
-
-/*______________________________For Collections _________________________________________________*/
+/*______________________________Import Payment Information _________________________________________________*/
 
 INSERT INTO [studentledger] 
     (gdate, ldate, tdate, S_Id, description, acctype, achead, dr, cr, balance, status)
@@ -95,7 +80,7 @@ SELECT
     pd.S_Id,                                                               -- Student ID
     'Payment Deposited' AS description,                                     -- Static text for description
     'Cr' AS acctype,                                                       -- 'Cr' for credit
-    'P' AS achead,                                                         -- 'P' for achead
+    'HC_P' AS achead,                                                         -- 'P' for achead
     0.00 AS dr,                                                            -- Debit amount is always 0.00
     pd.[Amount] AS cr,                                                     -- Credit amount from Amount column
     pd.[Amount] AS balance,                                                -- Balance equals Amount
@@ -111,7 +96,6 @@ ORDER BY
     pd.[Date];                                                             -- Sort by Date
 
 
-
 /*__________________________Reset ID Number___________________________________*/
 
 
@@ -119,15 +103,15 @@ ORDER BY
 CREATE TABLE [dbo].[studentledger_new] (
     [id] INT IDENTITY(1,1) NOT NULL PRIMARY KEY,            -- Auto-increment, not nullable
     [gdate] date NOT NULL,                                  -- Required field
-    [ldate] date NOT NULL DEFAULT '0000-00-00',             -- Required field
-    [tdate] date NOT NULL DEFAULT '0000-00-00',             -- Required field
+    [ldate] date NOT NULL,                                  -- Required field
+    [tdate] date NOT NULL,                                  -- Required field
     [S_Id] INT NOT NULL,                                    -- Required field
     [description] NVARCHAR(255) NOT NULL,                   -- Required field
     [acctype] NVARCHAR(50) NOT NULL,                        -- Required field
     [achead] NVARCHAR(50) NOT NULL,                         -- Required field
-    [dr] DECIMAL(18, 2) NOT NULL,                           -- Required field
-    [cr] DECIMAL(18, 2) NOT NULL,                           -- Required field
-    [balance] DECIMAL(18, 2) NOT NULL,                      -- Required field
+    [dr] DECIMAL(10, 2) NOT NULL,                           -- Required field
+    [cr] DECIMAL(10, 2) NOT NULL,                           -- Required field
+    [balance] DECIMAL(10, 2) NOT NULL,                      -- Required field
     [status] NVARCHAR(50) NOT NULL      
 );
 
@@ -135,30 +119,10 @@ CREATE TABLE [dbo].[studentledger_new] (
 INSERT INTO [dbo].[studentledger_new] (gdate, ldate, tdate, S_Id, description, acctype, achead, dr, cr, balance, status)
 SELECT gdate, ldate, tdate, S_Id, description, acctype, achead, dr, cr, balance, status
 FROM [dbo].[studentledger]
-ORDER BY gdate, S_Id;
+ORDER BY gdate, S_Id,achead;
 
 -- Step 3: Drop the old table
 DROP TABLE [dbo].[studentledger];
 
 -- Step 4: Rename the new table to the original table name
 EXEC sp_rename 'dbo.studentledger_new', 'studentledger';
-
-
-
------------------SQL FOR SUM------------------------
-SELECT
-    S_Id,
-    SUM(CASE WHEN achead = 'HC' THEN dr ELSE 0 END) AS SUM_HC,
-    SUM(CASE WHEN achead = 'F' THEN dr ELSE 0 END) AS SUM_F,
-    SUM(CASE WHEN achead = 'P' THEN cr ELSE 0 END) AS SUM_P,
-    (SUM(CASE WHEN achead = 'HC' THEN dr ELSE 0 END) + SUM(CASE WHEN achead = 'F' THEN dr ELSE 0 END) - SUM(CASE WHEN achead = 'P' THEN cr ELSE 0 END)) AS Balance
-FROM 
-    studentledger
-/*WHERE 
-    S_Id = '1404037'*/
-GROUP BY 
-    S_Id;
-
-
-
-

@@ -4,7 +4,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Fine_model extends CI_Model {
 
     public function CalFine($gdate) {
-        // Use the correct syntax for where conditions
         $this->db->where('status', 'Due');
         $this->db->where('achead', 'HC');
         $this->db->where('ldate <', $gdate);
