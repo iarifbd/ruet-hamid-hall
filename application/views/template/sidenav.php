@@ -37,7 +37,7 @@
                     <nav class="sb-sidenav-menu-nested nav">
                         <a class="nav-link" href="<?php echo base_url('Hostel_sit_plan'); ?>">Add Boarder</a>
                         <a class="nav-link" href="<?php echo base_url('FineCL'); ?>">Apply HC/F</a>
-                        <a class="nav-link" href="<?php echo base_url('Hostel_sit_plan'); ?>">Manage Boarders</a>
+                        <a class="nav-link" href="<?php echo base_url('Hostel_sit_plan/manageboarders'); ?>">Manage Boarders</a>
                     </nav>
                 </div>
 
@@ -51,9 +51,9 @@
                 <div class="collapse" id="SettingsLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
                         <a class="nav-link" href="<?php echo base_url('Hostel_sit_plan/CreateSitPlan'); ?>">Manage Plans</a>
-                        <a class="nav-link" href="<?php echo base_url('Hostel_sit_plan'); ?>">New Floor</a>
+                        <!-- <a class="nav-link" href="<?php echo base_url('Hostel_sit_plan'); ?>">New Floor</a>
                         <a class="nav-link" href="<?php echo base_url('Hostel_sit_plan'); ?>">New Room</a>
-                        <a class="nav-link" href="<?php echo base_url('Hostel_sit_plan'); ?>">New Seat</a>
+                        <a class="nav-link" href="<?php echo base_url('Hostel_sit_plan'); ?>">New Seat</a> -->
                     </nav>
                 </div>
             </div>

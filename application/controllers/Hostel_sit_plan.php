@@ -169,6 +169,13 @@ class Hostel_sit_plan extends CI_Controller {
         }
     }
 
+    public function manageboarders(){
+        $data['osit_plan']=$this->Hostel_model->OccupySitPlan();
+        $this->load->view('Sitplan/managebodor', $data);
+    }
 
+    public function checkout(){
+        echo "<h1>Boss! Please Keep Patient, The page is under development process. Thank you! :)</h1>";
+    }
     
 }

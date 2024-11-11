@@ -26,7 +26,7 @@
                             <div class="card mb-4 shadow-sm">
                                 <div class="card-header d-flex align-items-center">
                                     <i class="fas fa-box me-2"></i>
-                                    <h5 class="mb-0"><?php echo isset($sit_plan) && !empty($sit_plan) ? 'Edit Seat Plan' : 'Add Seat Plan'; ?></h5>
+                                    <h5 class="mb-0">Create Sit Plan</h5>
                                 </div>
                                 <div class="card-body">
                                     <form action="<?php echo site_url('hostel_sit_plan/makeplan'); ?>" method="post">

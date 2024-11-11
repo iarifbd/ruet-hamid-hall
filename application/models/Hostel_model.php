@@ -39,6 +39,18 @@ class Hostel_model extends CI_Model {
         return $query->result_array();
     }
 
+    public function OccupySitPlan() {
+        $this->db->where('status', 'occupy');
+        $this->db->order_by('hall_name', 'ASC');
+        $this->db->order_by('floor', 'ASC');
+        $this->db->order_by('room_num', 'ASC');
+        $this->db->order_by('sit_num', 'DEC');
+        $query = $this->db->get('hostel_sit_plan');
+        $OSitPlan = $query->result_array();
+        
+        return $OSitPlan;
+    }
+
     public function VacentSitPlan() {
         $this->db->select('hall_name');
         $this->db->where('status', 'vacant');
