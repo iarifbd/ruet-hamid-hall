@@ -7,6 +7,11 @@
                 .no-print {
                     display: none;
                 }
+
+                .bill-row {
+                background-color: transparent !important;
+                color: black !important; 
+                }
             }
         </style>
     </head>
@@ -32,7 +37,7 @@
                                     </div>
                                     <div class="card-body">
                                         <div class="table-responsive">
-                                            <table class="table table-striped table-hover table-bordered mydatatable">
+                                            <table class="table table-hover table-bordered mydatatable">
                                                 <thead class="table-striped">
                                                     <tr>
                                                         <th>SL#</th>
@@ -55,7 +60,7 @@
                                                         <th></th>
                                                     </tr>
                                                 </tfoot>
-                                                <tbody>
+                                                <tbody id="table-body">
                                                     <?php
                                                     $totalDr = 0;
                                                     $totalCr = 0;
@@ -64,10 +69,10 @@
                                                     foreach ($stuacc as $key => $value): 
                                                         $totalDr += $value['dr'];
                                                         $totalCr += $value['cr'];
-                                                        $totalBalance=$totalBalance+ ($value['dr']-$value['cr']);
+                                                        $totalBalance = $totalBalance + ($value['dr'] - $value['cr']);
                                                     ?>
-                                                    <tr>
-                                                        <td><?php echo ($key+1); ?></td>
+                                                    <tr class="bill-row" data-bill-date="<?php echo $value['gdate']; ?>">
+                                                        <td><?php echo ($key + 1); ?></td>
                                                         <td><?php echo $value['S_Id']; ?></td>
                                                         <td><?php echo $value['gdate']; ?></td>
                                                         <td><?php echo $value['ldate']; ?></td>
@@ -75,7 +80,7 @@
                                                         <td><?php echo number_format($value['dr'], 2); ?></td>
                                                         <td><?php echo number_format($value['cr'], 2); ?></td>
                                                         <td><?php echo number_format($totalBalance, 2); ?></td>
-                                                        <td><span class="badge <?php echo ($value['status']=='Paid') ? "bg-success" : "bg-danger"; ?>"><?php echo $value['status']; ?></span></td>
+                                                        <td><span class="badge <?php echo ($value['status'] == 'Paid') ? 'bg-success' : 'bg-danger'; ?>"><?php echo $value['status']; ?></span></td>
                                                     </tr>
                                                     <?php endforeach; ?>
                                                 </tbody>
@@ -103,5 +108,34 @@
             </div>
         </div>
         <?php $this->load->view('template/SiteScript'); ?>
+        <script>
+            // Function to generate a light random color
+            function getLightRandomColor() {
+                // Light colors are achieved by using higher values for RGB channels
+                const r = Math.floor(Math.random() * 256) + 100; // 100 to 255
+                const g = Math.floor(Math.random() * 256) + 100; // 100 to 255
+                const b = Math.floor(Math.random() * 256) + 100; // 100 to 255
+                return `rgb(${r},${g},${b})`;
+            }
+
+            // Group rows by Bill Date and apply random light color
+            window.onload = function() {
+                const rows = document.querySelectorAll('.bill-row');
+                const dateColors = {};
+
+                rows.forEach(row => {
+                    const billDate = row.getAttribute('data-bill-date');
+                    
+                    // If this Bill Date hasn't been assigned a color yet, assign it
+                    if (!dateColors[billDate]) {
+                        dateColors[billDate] = getLightRandomColor();
+                    }
+                    
+                    // Apply the color to the row
+                    row.style.backgroundColor = dateColors[billDate];
+                });
+            };
+        </script>
+
     </body>
 </html>
