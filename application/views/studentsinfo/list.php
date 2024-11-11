@@ -33,11 +33,9 @@
                                                         <th>Student#</th>
                                                         <th>Reg_No</th>
                                                         <th>Name</th>
-                                                        <th>Room</th>
                                                         <th>Dept</th>
                                                         <th>Batch</th>
                                                         <th>Mobile</th>
-                                                        <th>Hall_Name</th>
                                                         <th>Action</th>
                                                     </tr>
                                                 </thead>
@@ -47,11 +45,9 @@
                                                         <th>Student#</th>
                                                         <th>Reg_No</th>
                                                         <th>Name</th>
-                                                        <th>Room</th>
                                                         <th>Dept</th>
                                                         <th>Batch</th>
                                                         <th>Mobile</th>
-                                                        <th>Hall_Name</th>
                                                         <th>Action</th>
                                                     </tr>
                                                 </tfoot>
@@ -62,11 +58,9 @@
                                                         <td><?php echo $value['S_Id']; ?></td>
                                                         <td><?php echo $value['Reg_No']; ?></td>
                                                         <td><?php echo $value['Name']; ?></td>
-                                                        <td><?php echo $value['Room']; ?></td>
                                                         <td><?php echo $value['Dept']; ?></td>
                                                         <td><?php echo $value['Batch']; ?></td>
                                                         <td><?php echo $value['Mobile']; ?></td>
-                                                        <td><?php echo $value['Hall_Name']; ?></td> 
                                                         <td>
                                                             <div class="btn-group" role="group" aria-label="Action buttons">
                                                                 <a href="<?php echo site_url('StudentInfo/getstudent/' . $value['S_Id']); ?>" class="btn btn-primary btn-sm">

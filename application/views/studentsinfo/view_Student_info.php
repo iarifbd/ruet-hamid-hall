@@ -54,7 +54,6 @@
                     <p><strong>Student Id:</strong> <?php echo $value['S_Id']; ?></p>
                     <p><strong>Name:</strong> <?php echo $value['Name']; ?></p>
                     <p><strong>Reg No:</strong> <?php echo $value['Reg_No']; ?></p>
-                    <p><strong>Room:</strong> <?php echo $value['Room']; ?></p>
                     <p><strong>Dept:</strong> <?php echo $value['Dept']; ?></p>
                     <p><strong>Batch:</strong> <?php echo $value['Batch']; ?></p>
                     <p><strong>Father's Name:</strong> <?php echo $value['F_Name']; ?></p>
@@ -64,7 +63,6 @@
                     <p><strong>Guardian Mobile:</strong> <?php echo $value['Gur_Mobile']; ?></p>
                     <p><strong>Blood Group:</strong> <?php echo $value['Blood']; ?></p>
                     <p><strong>Religion:</strong> <?php echo $value['Religion']; ?></p>
-                    <p><strong>Hall Name:</strong> <?php echo $value['Hall_Name']; ?></p>
                 </div>
             </div>
             <?php endforeach; ?>
