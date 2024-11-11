@@ -63,7 +63,7 @@
                                                         <td><?php echo $value['adate']; ?></td>
                                                         <td>
                                                             <div class="btn-group" role="group" aria-label="Action buttons">
-                                                                <a href="<?php echo base_url('Hostel_sit_plan/checkout') ;?>" class="btn btn-primary btn-sm">
+                                                                <a href="<?php echo base_url('Hostel_sit_plan/checkout') ;?>" class="btn btn-primary btn-sm" target="_blank">
                                                                     <i class="fa fa-print" aria-hidden="true"></i></i> Check Out
                                                                 </a>
                                                             </div>             
