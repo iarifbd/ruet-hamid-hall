@@ -36,7 +36,7 @@
                                             <div class="col-md-4 mb-3">
                                                 <label for="hall_name" class="form-label">Hall Name</label>
                                                 <select name="hall_name" id="hall_name"class="form-control selectpicker" data-live-search="true" data-width="100%" required>
-                                                    <option value="" disabled selected>Select Seat Number</option>
+                                                    <option value="" disabled selected>Select Hall Name</option>
                                                     <?php foreach ($vsit_plan as $key => $hall_name) {?>
                                                        <option value="<?php echo $hall_name['hall_name']; ?>"><?php echo $hall_name['hall_name']; ?></option>
                                                     <?php }; ?>
@@ -48,9 +48,6 @@
                                                 <label for="floor" class="form-label">Floor</label>
                                                 <select name="floor" id="floor" class="form-control selectpicker" data-live-search="true" data-width="100%" required>
                                                     <option value="" disabled selected>Select Floor</option>
-                                                    <?php foreach ($vsit_plan as $key => $floor) {?>
-                                                       <option value="<?php echo $floor['floor']; ?>"><?php echo $floor['floor']; ?></option>
-                                                    <?php }; ?>
                                                 </select>
                                             </div>
 
@@ -126,6 +123,34 @@
         </div>
     </div>
     <?php $this->load->view('template/SiteScript'); ?>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            // When hall_name changes, fetch corresponding floors
+            $('#hall_name').change(function() {
+                var hall_name = $(this).val(); // Get the selected hall_name
+                
+                if (hall_name != '') {
+                    $.ajax({
+                        url: '<?= base_url('Hostel_sit_plan/ajaxfloor'); ?>',
+                        method: 'POST',
+                        data: { hall_name: hall_name },
+                        success: function(data) {
+                            $('#floor').html(data); // Update the floor dropdown with the response
+                            $('.selectpicker').selectpicker('refresh'); // Refresh the selectpicker UI (if using Bootstrap Select)
+                        },
+                        error: function(xhr, status, error) {
+                            alert("Error fetching data: " + error); // Handle errors
+                        }
+                    });
+                } else {
+                    // If no hall_name selected, reset the floor dropdown
+                    $('#floor').html('<option value="">Select Floor</option>');
+                    $('.selectpicker').selectpicker('refresh');
+                }
+            });
+        });
+    </script>
+
 </body>
 </html>
 

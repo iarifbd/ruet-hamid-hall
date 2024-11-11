@@ -13,7 +13,29 @@ class Hostel_sit_plan extends CI_Controller {
     public function index() {
         $data['vsit_plan']=$this->Hostel_model->VacentSitPlan();
         $data['sit_plan']=$this->Hostel_model->SitPlan();
+        $data['floor'] = '';
         $this->load->view('Sitplan/SitAlocationForm', $data);
+    }
+
+    public function ajaxfloor() {
+        // Get hall_name from POST data
+        $hall_name = $this->input->post('hall_name');
+
+        // Validate hall_name (ensure it's not empty)
+        if (!empty($hall_name)) {
+            $Floors = $this->Hostel_model->VacentFloor($hall_name);
+
+            // Create the options for the Floors dropdown
+            if (!empty($Floors)) {
+                foreach ($Floors as $floor) {
+                    echo "<option value='" . htmlspecialchars($floor['floor']) . "'>" . htmlspecialchars($floor['floor']) . "</option>";
+                }
+            } else {
+                echo "<option value=''>No Floors available</option>";
+            }
+        } else {
+            echo "<option value=''>Invalid Hall Name</option>";
+        }
     }
 
     public function saveAlotment(){
@@ -68,7 +90,6 @@ class Hostel_sit_plan extends CI_Controller {
     }
 
     public function makeplan(){
-        print_r($_POST);
         $hallName=$this->input->post('Hall_name');
         $floor=$this->input->post('floor');
         $room=$this->input->post('room');
@@ -93,8 +114,6 @@ class Hostel_sit_plan extends CI_Controller {
             $this->session->set_flashdata('success', 'New room created');
             redirect(base_url('Hostel_sit_plan/CreateSitPlan'));
         }
-        echo "<pre>";
-        print_r($data);
     }
 
 
