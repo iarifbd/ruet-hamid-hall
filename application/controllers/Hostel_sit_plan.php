@@ -27,11 +27,59 @@ class Hostel_sit_plan extends CI_Controller {
 
             // Create the options for the Floors dropdown
             if (!empty($Floors)) {
+                echo "<option value=''>Select Floor Number</option>";
                 foreach ($Floors as $floor) {
                     echo "<option value='" . htmlspecialchars($floor['floor']) . "'>" . htmlspecialchars($floor['floor']) . "</option>";
                 }
             } else {
                 echo "<option value=''>No Floors available</option>";
+            }
+        } else {
+            echo "<option value=''>Invalid Hall Name</option>";
+        }
+    }
+
+    public function ajaxroom() {
+        // Get hall_name from POST data
+        $hall_name = $this->input->post('hall_name');
+        $floor = $this->input->post('floor');
+
+        // Validate hall_name (ensure it's not empty)
+        if (!empty($hall_name) && !empty($floor)) {
+            $Rooms = $this->Hostel_model->VacentRoom($hall_name,$floor);
+
+            // Create the options for the Rooms dropdown
+            if (!empty($Rooms)) {
+                echo "<option value=''>Select Room Number</option>";
+                foreach ($Rooms as $room) {
+                    echo "<option value='" . htmlspecialchars($room['room_num']) . "'>" . htmlspecialchars($room['room_num']) . "</option>";
+                }
+            } else {
+                echo "<option value=''>No room available</option>";
+            }
+        } else {
+            echo "<option value=''>Invalid Hall Name</option>";
+        }
+    }
+
+    public function ajaxsit() {
+        // Get hall_name from POST data
+        $hall_name = $this->input->post('hall_name');
+        $floor = $this->input->post('floor');
+        $room_num = $this->input->post('roomNumber');
+
+        // Validate hall_name (ensure it's not empty)
+        if (!empty($hall_name) && !empty($floor)) {
+            $Sits = $this->Hostel_model->VacentSit($hall_name,$floor,$room_num);
+
+            // Create the options for the Sits dropdown
+            if (!empty($Sits)) {
+                echo "<option value=''>Select Sit Number</option>";
+                foreach ($Sits as $sit) {
+                    echo "<option value='" . htmlspecialchars($sit['sit_num']) . "'>" . htmlspecialchars($sit['sit_num']) . "</option>";
+                }
+            } else {
+                echo "<option value=''>No sit available</option>";
             }
         } else {
             echo "<option value=''>Invalid Hall Name</option>";

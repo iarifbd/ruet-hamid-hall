@@ -56,9 +56,6 @@
                                                 <label for="roomNumber" class="form-label">Room Number</label>
                                                 <select name="roomNumber" id="roomNumber"class="form-control selectpicker" data-live-search="true" data-width="100%" required>
                                                     <option value="" disabled selected>Select Room Number</option>
-                                                    <?php foreach ($vsit_plan as $key => $room_num) {?>
-                                                       <option value="<?php echo $room_num['room_num']; ?>"><?php echo $room_num['room_num']; ?></option>
-                                                    <?php }; ?>
                                                 </select>
                                             </div>
 
@@ -67,9 +64,6 @@
                                                 <label for="seatNumber" class="form-label">Seat Number</label>
                                                 <select name="seatNumber" id="seatNumber"class="form-control selectpicker" data-live-search="true" data-width="100%" required>
                                                     <option value="" disabled selected>Select Seat Number</option>
-                                                    <?php foreach ($vsit_plan as $key => $sit_num) {?>
-                                                       <option value="<?php echo $sit_num['sit_num']; ?>"><?php echo $sit_num['sit_num']; ?></option>
-                                                    <?php }; ?>
                                                 </select>
                                             </div>
 
@@ -136,6 +130,7 @@
                         data: { hall_name: hall_name },
                         success: function(data) {
                             $('#floor').html(data); // Update the floor dropdown with the response
+                            $('#roomNumber').html('<option value="" disabled selected>Select Room Number</option>'); // Reset Room dropdown
                             $('.selectpicker').selectpicker('refresh'); // Refresh the selectpicker UI (if using Bootstrap Select)
                         },
                         error: function(xhr, status, error) {
@@ -145,10 +140,64 @@
                 } else {
                     // If no hall_name selected, reset the floor dropdown
                     $('#floor').html('<option value="">Select Floor</option>');
+                    $('#roomNumber').html('<option value="">Select Room Number</option>'); // Reset Room dropdown
                     $('.selectpicker').selectpicker('refresh');
                 }
             });
+
+            // When floor changes, fetch corresponding rooms
+            $('#floor').change(function() {
+                var hall_name = $('#hall_name').val(); // Get the selected hall_name
+                var floor = $(this).val(); // Get the selected floor
+                
+                if (hall_name != '' && floor != '') {
+                    $.ajax({
+                        url: '<?= base_url('Hostel_sit_plan/ajaxroom'); ?>',
+                        method: 'POST',
+                        data: { hall_name: hall_name, floor: floor },
+                        success: function(data) {
+                            $('#roomNumber').html(data); // Update the roomNumber dropdown with the response
+                            $('.selectpicker').selectpicker('refresh'); // Refresh the selectpicker UI (if using Bootstrap Select)
+                        },
+                        error: function(xhr, status, error) {
+                            alert("Error fetching rooms: " + error); // Handle errors
+                        }
+                    });
+                } else {
+                    // If no floor selected, reset the roomNumber dropdown
+                    $('#roomNumber').html('<option value="">Select Room Number</option>');
+                    $('.selectpicker').selectpicker('refresh');
+                }
+            });
+
+            // When room changes, fetch corresponding sit
+            $('#roomNumber').change(function() {
+                var hall_name = $('#hall_name').val(); 
+                var floor = $('#floor').val(); 
+                var roomNumber = $(this).val(); 
+                
+                if (hall_name != '' && floor != '' && roomNumber != '') {
+                    $.ajax({
+                        url: '<?= base_url('Hostel_sit_plan/ajaxsit'); ?>',
+                        method: 'POST',
+                        data: { hall_name: hall_name, floor: floor,roomNumber:roomNumber },
+                        success: function(data) {
+                            $('#seatNumber').html(data); 
+                            $('.selectpicker').selectpicker('refresh'); 
+                        },
+                        error: function(xhr, status, error) {
+                            alert("Error fetching rooms: " + error); // Handle errors
+                        }
+                    });
+                } else {
+                    // If no room selected, reset the sit dropdown
+                    $('#seatNumber').html('<option value="">Select sit Number</option>');
+                    $('.selectpicker').selectpicker('refresh');
+                }
+            });
+
         });
+
     </script>
 
 </body>

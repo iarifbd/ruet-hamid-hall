@@ -62,6 +62,33 @@ class Hostel_model extends CI_Model {
         return $VacentFloor;
     }
 
+    public function VacentRoom($hall_name,$floor) {
+        $this->db->select('room_num');
+        $this->db->where('status', 'vacant');
+        $this->db->where('hall_name', $hall_name);
+        $this->db->where('floor', $floor);
+        $this->db->group_by('room_num');
+        $this->db->order_by('room_num', 'ASC');
+        $query = $this->db->get('hostel_sit_plan');
+        $VacentRoom = $query->result_array();
+        
+        return $VacentRoom;
+    }
+
+    public function VacentSit($hall_name,$floor,$room_num) {
+        $this->db->select('sit_num');
+        $this->db->where('status', 'vacant');
+        $this->db->where('hall_name', $hall_name);
+        $this->db->where('floor', $floor);
+        $this->db->where('room_num', $room_num);
+        $this->db->group_by('sit_num');
+        $this->db->order_by('sit_num', 'ASC');
+        $query = $this->db->get('hostel_sit_plan');
+        $VacentSit = $query->result_array();
+        
+        return $VacentSit;
+    }
+
     public function CheckSitPlan($hallName,$floor,$room,$sit){
         $this->db->where('hall_name',$hallName );
         $this->db->where('floor', $floor);
