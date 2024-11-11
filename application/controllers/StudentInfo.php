@@ -36,7 +36,6 @@ class StudentInfo extends CI_Controller {
                 'S_Id' => $this->input->post('S_Id'),
                 'Reg_No' => $this->input->post('Reg_No'),
                 'Name' => $this->input->post('Name'),
-                'Room' => $this->input->post('Room'),
                 'Dept' => $this->input->post('Dept'),
                 'Batch' => $this->input->post('Batch'),
                 'F_Name' => $this->input->post('F_Name'),
@@ -46,7 +45,6 @@ class StudentInfo extends CI_Controller {
                 'Gur_Mobile' => $this->input->post('Gur_Mobile'),
                 'Blood' => $this->input->post('Blood'),
                 'Religion' => $this->input->post('Religion'),
-                'Hall_Name' => $this->input->post('Hall_Name'),
             ];
 
             if ($id) {

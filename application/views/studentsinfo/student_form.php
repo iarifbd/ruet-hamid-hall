@@ -2,12 +2,113 @@
 <html lang="en">
 <head>
     <?php $this->load->view('template/header'); ?>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        .btn-primary {
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #004085;
+        }
+
+        .form-label {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-control {
+            border-radius: 5px;
+            box-shadow: inset 0 1px 2px rgba(0,0,0,.075);
+        }
+
+        .card {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            background-color: #fff;
+        }
+
+        .card-header {
+            background-color: #f1f1f1;
+            border-radius: 10px 10px 0 0;
+            padding: 15px;
+            font-size: 1.2rem;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .card-footer {
+            padding: 15px;
+            background-color: #f9f9f9;
+            text-align: right;
+            border-radius: 0 0 10px 10px;
+        }
+
+        .container-fluid {
+            margin-top: 20px;
+        }
+
+        .col-md-6 {
+            margin-bottom: 15px;
+        }
+
+        .row > .col-md-6 {
+            display: flex;
+            flex-direction: column;
+        }
+
+        #layoutSidenav_content {
+            padding-bottom: 80px;
+        }
+
+        #myBtn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: none;
+            font-size: 18px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            padding: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        #myBtn:hover {
+            background-color: #0056b3;
+        }
+
+        footer {
+            background-color: #f1f1f1;
+            padding: 20px;
+        }
+
+        .mdtbtn {
+            padding: 10px 20px;
+        }
+    </style>
 </head>
 <body class="sb-nav-fixed">
     <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="fas fa-arrow-up"></i></button>
+    
     <?php $this->load->view('template/topnav'); ?>
+
     <div id="layoutSidenav">
         <?php $this->load->view('template/sidenav'); ?>
+
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
@@ -39,10 +140,6 @@
                                             <div class="col-md-6 mb-3">
                                                 <label for="Name" class="form-label">Name:</label>
                                                 <input type="text" id="Name" name="Name" class="form-control" value="<?php echo isset($student[0]['Name']) ? $student[0]['Name'] : ''; ?>" required>
-                                            </div>
-                                            <div class="col-md-6 mb-3">
-                                                <label for="Room" class="form-label">Room:</label>
-                                                <input type="number" id="Room" name="Room" class="form-control" value="<?php echo isset($student[0]['Room']) ? $student[0]['Room'] : ''; ?>" required>
                                             </div>
                                             <div class="col-md-6 mb-3">
                                                 <label for="Dept" class="form-label">Department:</label>
@@ -80,10 +177,6 @@
                                                 <label for="Religion" class="form-label">Religion:</label>
                                                 <input type="text" id="Religion" name="Religion" class="form-control" value="<?php echo isset($student[0]['Religion']) ? $student[0]['Religion'] : ''; ?>" required>
                                             </div>
-                                            <div class="col-md-6 mb-3">
-                                                <label for="Hall_Name" class="form-label">Hall Name:</label>
-                                                <input type="text" id="Hall_Name" name="Hall_Name" class="form-control" value="<?php echo isset($student[0]['Hall_Name']) ? $student[0]['Hall_Name'] : ''; ?>" required>
-                                            </div>
                                         </div>
                                         <button type="submit" class="btn btn-primary"><?php echo isset($student) && !empty($student) ? 'Update' : 'Submit'; ?></button>
                                     </form>
@@ -96,11 +189,13 @@
                     </div>
                 </div>
             </main>
+
             <footer class="py-4 bg-light mt-auto">
                 <?php $this->load->view('template/footer'); ?>
             </footer>
         </div>
     </div>
+
     <?php $this->load->view('template/SiteScript'); ?>
 </body>
 </html>

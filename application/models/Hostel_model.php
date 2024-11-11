@@ -106,6 +106,9 @@ class Hostel_model extends CI_Model {
         $this->db->insert('hostel_sit_plan', $data);
     }
 
+    public function save_hall_records($data){
+        $this->db->insert('hall_records', $data);
+    }
 
 
 }

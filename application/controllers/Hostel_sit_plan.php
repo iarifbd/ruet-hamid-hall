@@ -102,6 +102,11 @@ class Hostel_sit_plan extends CI_Controller {
         //save alotment 
         $this->Hostel_model->saveAlotment($data);
 
+        //save hall records
+        $this->Hostel_model->save_hall_records($data);
+
+
+
         // Get the last day of this month
         $lastDateOfMonth = (new DateTime($this->input->post('allocationDate')))->modify('last day of this month')->format('Y-m-d');
 
