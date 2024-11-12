@@ -10,10 +10,15 @@ class StudentCL extends CI_Controller {
     }
 
     public function index() {
-        $this->load->view('SDashboard/template');
+        $this->load->view('SDashboard/Login');
     }
 
-
+    public function student(){
+        // Check if the session is set and 'loginas' is 'student'
+        if ($this->session->userdata('loginas') !== 'student') {
+            $this->load->view('SDashboard/template');
+        }
+    }
 
 }
 

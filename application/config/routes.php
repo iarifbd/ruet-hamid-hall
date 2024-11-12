@@ -3,6 +3,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 //Admin
 $route['default_controller'] = 'welcome';
+$route['admin'] = 'welcome/index';
+
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 $route['print_quotation/(:num)'] = 'Quotetion/print_quotation/$1';
