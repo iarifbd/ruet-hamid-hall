@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-
+//Admin
 $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
@@ -17,3 +17,6 @@ $route['FineCL/index/(:num)'] = 'FineCL/index/$1';
 
 
 $route['game/spin'] = 'game/spin'; // API to spin the wheel
+
+//Student
+$route['student'] = 'StudentCL/index';
