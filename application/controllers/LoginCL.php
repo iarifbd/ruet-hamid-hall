@@ -33,7 +33,17 @@ class LoginCL extends CI_Controller {
         }
     }
 
+    public function Slogout() {
+        // Destroy the session
+        $this->session->sess_destroy();
+        redirect(base_url('StudentCL/index'));
+    }
 
+    public function Alogout() {
+        // Destroy the session
+        $this->session->sess_destroy();
+        redirect(base_url('Welcome/index'));
+    }
 
 }
 
