@@ -20,7 +20,7 @@
                 </a>
                 <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" href="<?php echo base_url('StudentCL'); ?>">Accounts Ledger</a>
+                        <a class="nav-link" href="<?php echo base_url('StudentCL/StuTopSheet'); ?>">Accounts Ledger</a>
                         <a class="nav-link" href="<?php echo base_url('StudentCL'); ?>">Make Invoice</a>
                         <a class="nav-link" href="<?php echo base_url('StudentCL'); ?>">Update Payments</a>
                     </nav>
@@ -51,8 +51,6 @@
                     <nav class="sb-sidenav-menu-nested nav">
                         <a class="nav-link" href="<?php echo base_url('StudentCL'); ?>">Update Information</a>
                         <a class="nav-link" href="<?php echo base_url('StudentCL'); ?>">Reset Password</a>
-                        <a class="nav-link" href="<?php echo base_url('StudentCL'); ?>">New Room</a>
-                        <a class="nav-link" href="<?php echo base_url('StudentCL'); ?>">New Seat</a>
                     </nav>
                 </div>
             </div>

@@ -58,5 +58,19 @@ class Student_model extends CI_Model {
         return $query->result_array();
     }
 
+    public function accTopSheet($S_Id) {
+        $this->db->select('S_Id, SUM(dr) AS Dr, SUM(cr) AS Cr, SUM(dr) - SUM(cr) AS Balance, MAX(status) AS Status');
+        $this->db->from('studentledger');
+        $this->db->where('S_Id', $S_Id);
+        $query = $this->db->get();
+
+        if ($query->num_rows() > 0) {
+            return $query->result_array();
+        } else {
+            return [];
+        }
+    }
+
+
 
 }

@@ -20,6 +20,18 @@ class StudentCL extends CI_Controller {
         }
     }
 
+    public function StuTopSheet(){
+        $id=$this->session->userdata('S_Id');
+        $data['stuacc'] = $this->Student_model->accTopSheet($id);
+        $this->load->view('SDashboard/accTopSheet', $data);
+    }
+
+    public function StuLedDetails(){
+        $id=$this->session->userdata('S_Id');
+        $data['stuacc'] = $this->Student_model->StuLedgDetails($id);
+        $this->load->view('SDashboard/AccLedDetail', $data);
+    }
+
 }
 
 ?>
