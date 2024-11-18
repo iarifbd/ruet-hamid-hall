@@ -41,12 +41,12 @@
                                                 <thead class="table-striped">
                                                     <tr>
                                                         <th>SL#</th>
-                                                        <th>Student#</th>
                                                         <th>Bill Date</th>
                                                         <th>Last Date</th>
                                                         <th>Description</th>
-                                                        <th>Dr</th>
-                                                        <th>Cr</th>
+                                                        <th>Hall Charge</th>
+                                                        <th>Delay Fine</th>
+                                                        <th>Paid</th>
                                                         <th>Balance</th>
                                                         <th>Status</th>
                                                     </tr>
@@ -66,19 +66,16 @@
                                                     $totalCr = 0;
                                                     $totalBalance = 0;
 
-                                                    foreach ($stuacc as $key => $value): 
-                                                        $totalDr += $value['dr'];
-                                                        $totalCr += $value['cr'];
-                                                        $totalBalance = $totalBalance + ($value['dr'] - $value['cr']);
+                                                    foreach ($stuacc as $key => $value):
                                                     ?>
                                                     <tr class="bill-row" data-bill-date="<?php echo $value['gdate']; ?>">
                                                         <td><?php echo ($key + 1); ?></td>
-                                                        <td><?php echo $value['S_Id']; ?></td>
                                                         <td><?php echo $value['gdate']; ?></td>
                                                         <td><?php echo $value['ldate']; ?></td>
                                                         <td><?php echo $value['description']; ?></td>
-                                                        <td><?php echo number_format($value['dr'], 2); ?></td>
-                                                        <td><?php echo number_format($value['cr'], 2); ?></td>
+                                                        <td><?php echo number_format($value['HallCharge'], 2); ?></td>
+                                                        <td><?php echo number_format($value['DelayFine'], 2); ?></td>
+                                                        <td><?php echo number_format($value['Paid'], 2); ?></td>
                                                         <td><?php echo number_format($totalBalance, 2); ?></td>
                                                         <td><span class="badge <?php echo ($value['status'] == 'Paid') ? 'bg-success' : 'bg-danger'; ?>"><?php echo $value['status']; ?></span></td>
                                                     </tr>

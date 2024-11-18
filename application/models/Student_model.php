@@ -43,25 +43,45 @@ class Student_model extends CI_Model {
     }
 
     public function StuLedgDetails($id = null) {
-        // If an ID is provided, filter by that ID
-        if ($id !== null) {
-            $this->db->where('S_Id', $id);
-        }
+       $this->db->select('
+            gdate,
+            S_Id,
+            ldate,
+            description,
+            status, 
+            SUM(CASE WHEN achead = "HC" THEN dr ELSE 0 END) AS HallCharge, 
+            SUM(CASE WHEN achead = "HC_DF" THEN dr ELSE 0 END) AS DelayFine,
+            SUM(CASE WHEN achead = "HC_P" THEN cr ELSE 0 END) AS Paid,
+            ');
 
-        // Order the results by 'id'
+        $this->db->from('studentledger');
+        $this->db->where('S_Id', $id);
+        $this->db->group_by('gdate', 'ASC');
         $this->db->order_by('gdate', 'ASC');
+        $query = $this->db->get();
 
-        // Execute the query on the 'studentledger' table
-        $query = $this->db->get('studentledger');
-
-        // Return the result as an array
-        return $query->result_array();
+        if ($query->num_rows() > 0) {
+            return $query->result_array();
+        } else {
+            return [];
+        }
+        
     }
 
     public function accTopSheet($S_Id) {
-        $this->db->select('S_Id, SUM(dr) AS Dr, SUM(cr) AS Cr, SUM(dr) - SUM(cr) AS Balance, MAX(status) AS Status');
+        $this->db->select('
+            gdate,
+            S_Id,
+            ldate,
+            description,
+            status, 
+            SUM(CASE WHEN achead = "HC" THEN dr ELSE 0 END) AS HallCharge, 
+            SUM(CASE WHEN achead = "HC_DF" THEN dr ELSE 0 END) AS DelayFine,
+            SUM(CASE WHEN achead = "HC_P" THEN cr ELSE 0 END) AS Paid,
+            ');
         $this->db->from('studentledger');
         $this->db->where('S_Id', $S_Id);
+        //$this->db->group_by('gdate');
         $query = $this->db->get();
 
         if ($query->num_rows() > 0) {

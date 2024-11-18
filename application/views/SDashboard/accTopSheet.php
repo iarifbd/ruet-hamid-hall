@@ -34,8 +34,8 @@
                                                 <thead class="table-striped">
                                                     <tr>
                                                         <th>SL#</th>
-                                                        <th>Student#</th>
-                                                        <th>Total Payble</th>
+                                                        <th>Hall Charge</th>
+                                                        <th>Delay Fine</th>
                                                         <th>Paid</th>
                                                         <th>Balance</th>
                                                         <th class="no-print">Action</th>
@@ -55,21 +55,22 @@
                                                     <?php foreach ($stuacc as $key => $value): ?>
                                                     <tr>
                                                         <td><?php echo ($key+1); ?></td>
-                                                        <td><?php echo $value['S_Id']; ?></td>
-                                                        <td><?php echo $value['Dr']; ?></td>
-                                                        <td><?php echo $value['Cr']; ?></td>
+                                                        <td><?php echo $value['HallCharge']; ?></td>
+                                                        <td><?php echo $value['DelayFine']; ?></td>
+                                                        <td><?php echo $value['Paid']; ?></td>
                                                     <td>
+                            <?php $Balance=(($value['HallCharge']+$value['DelayFine'])-$value['Paid']) ;?>
                                                         <span class="badge <?php 
-                                                            if ($value['Balance'] == 0) {
+                                                            if ($Balance == 0) {
                                                                 echo "bg-success";
-                                                            } elseif ($value['Balance'] > 0) {
+                                                            } elseif ($Balance > 0) {
                                                                 echo "bg-danger";
-                                                            } elseif ($value['Balance'] < 0) {
+                                                            } elseif ($Balance < 0) {
                                                                 echo "bg-info";
                                                             } else {
                                                                 echo "bg-warning";
                                                             }
-                                                        ?>"><?php echo $value['Balance']; ?></span>
+                                                        ?>"><?php echo $Balance; ?></span>
                                                     </td>
                                                         <td class="no-print">
                                                             <div class="btn-group" role="group" aria-label="Action buttons">
