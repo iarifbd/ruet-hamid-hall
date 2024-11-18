@@ -126,3 +126,27 @@ DROP TABLE [dbo].[studentledger];
 
 -- Step 4: Rename the new table to the original table name
 EXEC sp_rename 'dbo.studentledger_new', 'studentledger';
+
+
+
+/*__________________________ GET Dr___________________________________*/
+
+SELECT 
+    gdate,
+    SUM(CASE WHEN achead = 'HC' THEN dr ELSE 0 END) AS sum_hc,
+    SUM(CASE WHEN achead = 'HC_DF' THEN dr ELSE 0 END) AS sum_hc_df
+FROM 
+    studentledger
+GROUP BY 
+    `S_Id`,gdate;
+
+
+
+$this->db->select('gdate, 
+    SUM(CASE WHEN achead = "HC" THEN dr ELSE 0 END) AS sum_hc, 
+    SUM(CASE WHEN achead = "HC_DF" THEN dr ELSE 0 END) AS sum_hc_df')
+         ->from('studentledger')
+         ->group_by(['S_Id', 'gdate']);
+
+$query = $this->db->get();
+$result = $query->result_array(); // Fetch results as an associative array
