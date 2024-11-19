@@ -109,4 +109,12 @@ class Student_model extends CI_Model {
         }
     }
 
+    public function CartData($data) {
+        if ($this->db->insert_batch('inv_records', $data)) {
+            return $this->db->insert_id(); 
+        }
+        return false; 
+    }
+
+
 }

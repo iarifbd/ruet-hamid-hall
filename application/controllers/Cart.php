@@ -63,12 +63,47 @@ class Cart extends CI_Controller {
     }
 
 
-    public function checkout(){
-        $data['id']=$this->session->userdata('S_Id');
-        $data['Info']=$this->Student_model->stuinfo($this->session->userdata('S_Id'));
-        $data['stuacc'] = $this->Student_model->inv_due($this->session->userdata('S_Id'));
-        $data['cart']=$this->cart->contents();
-        $this->load->view('SDashboard/print_inv',$data);
+    public function checkout() {
+        $studentId = $this->session->userdata('S_Id');
+
+        // If student ID is not set, redirect or show an error
+        if (empty($studentId)) {
+            redirect('LoginCL/studentlogin'); 
+            return;
+        }
+
+        // Retrieve student information and invoice details
+        $data['id'] = $studentId;
+        $data['Info'] = $this->Student_model->stuinfo($studentId);
+        $data['stuacc'] = $this->Student_model->inv_due($studentId);
+        
+        // Get cart contents
+        $data['cart'] = $this->cart->contents();
+
+        // Prepare data for insertion into the database
+        $sdata = [];
+        foreach ($data['cart'] as $item) {
+            // Populate $sdata array with cart item details
+            $sdata[] = [
+                'S_Id' => $item['id'],           
+                'gdate' => $item['name'],        
+                'amount' => $item['price'],      
+                'pdate' => date('Y-m-d'),        
+                'status' => 'Under Process'      
+            ];
+        }
+
+        // Insert the data into the database
+        if (!empty($sdata)) {
+            $this->Student_model->CartData($sdata);
+        } else {
+            redirect('cart'); 
+        }
+
+        // Load view to print invoice
+        $this->load->view('SDashboard/print_inv', $data); 
     }
+
+
 }
 ?>
