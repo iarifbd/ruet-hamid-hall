@@ -9,6 +9,7 @@ class Cart extends CI_Controller {
         $this->load->model('Student_model');
         $this->load->model('Fine_model');
         $this->load->library('cart');
+        $this->load->library('NumberToWords');
     }
 
     // Method to view the cart
@@ -63,7 +64,11 @@ class Cart extends CI_Controller {
 
 
     public function checkout(){
-        print_r($_POST);
+        $data['id']=$this->session->userdata('S_Id');
+        $data['Info']=$this->Student_model->stuinfo($this->session->userdata('S_Id'));
+        $data['stuacc'] = $this->Student_model->inv_due($this->session->userdata('S_Id'));
+        $data['cart']=$this->cart->contents();
+        $this->load->view('SDashboard/print_inv',$data);
     }
 }
 ?>
