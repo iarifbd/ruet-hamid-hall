@@ -91,6 +91,22 @@ class Student_model extends CI_Model {
         }
     }
 
+    public function inv_due($S_Id) {
+        $this->db->select('
+                S_Id, gdate, sum(dr) AS TotalDue
+            ');
+        $this->db->from('studentledger');
+        $this->db->where('S_Id', $S_Id);
+        $this->db->where('status', 'Due');
+        $this->db->group_by('gdate');
+        $this->db->order_by('gdate');
+        $query = $this->db->get();
 
+        if ($query->num_rows() > 0) {
+            return $query->result_array();
+        } else {
+            return [];
+        }
+    }
 
 }
