@@ -67,6 +67,9 @@
                                                     $totalBalance = 0;
 
                                                     foreach ($stuacc as $key => $value):
+                                                        $totalDr=$totalDr+$value['HallCharge']+$value['DelayFine'];
+                                                        $totalCr=$totalCr+$value['Paid'];
+                                                        $totalBalance=$totalBalance+(($value['HallCharge']+$value['DelayFine'])-$value['Paid']);
                                                     ?>
                                                     <tr class="bill-row" data-bill-date="<?php echo $value['gdate']; ?>">
                                                         <td><?php echo ($key + 1); ?></td>
@@ -105,7 +108,7 @@
             </div>
         </div>
         <?php $this->load->view('SDashboard/SiteScript'); ?>
-        <script>
+        <!-- <script>
             // Function to generate a light random color
             function getLightRandomColor() {
                 // Light colors are achieved by using higher values for RGB channels
@@ -132,7 +135,7 @@
                     row.style.backgroundColor = dateColors[billDate];
                 });
             };
-        </script>
+        </script> -->
 
     </body>
 </html>
