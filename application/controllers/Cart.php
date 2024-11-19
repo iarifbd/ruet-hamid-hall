@@ -100,6 +100,9 @@ class Cart extends CI_Controller {
             redirect('cart'); 
         }
 
+        // Clear the cart after checkout
+        $this->cart->destroy();
+
         // Load view to print invoice
         $this->load->view('SDashboard/print_inv', $data); 
     }
