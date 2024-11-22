@@ -45,7 +45,7 @@
                                                         <td><?php echo $value['gdate']; ?></td>
                                                         <td><?php echo $value['TotalDue']; ?></td>
                                                         <td>
-                                                            <a href="<?php echo base_url('Cart/add/'.$value['gdate'].'/'.$value['TotalDue'].'/'.$value['S_Id']); ?>" class="btn btn-primary btn-sm">Pay</a>
+                                                            <a href="<?php echo base_url('Cart/add/'.$value['gdate'].'/'.$value['TotalDue'].'/'.$value['S_Id']); ?>" class="btn btn-primary btn-sm"><i class="fa-regular fa-credit-card"></i> Pay</a>
                                                         </td>
                                                     </tr>
                                                     <?php endforeach; ?>
